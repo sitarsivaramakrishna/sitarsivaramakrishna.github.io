@@ -1,15 +1,18 @@
 # Sitar Siva — Website for Sri B. Sivaramakrishna Rao
 
 ## Project Overview
-Static website for Sitarist and Composer **Basavaraj Sivaramakrishna Rao** (known as "Sitar Siva").
-Built by his student Bharadwaj. Hosted on GitHub Pages (repo: sitarsiva). URL: `sitarsiva.github.io` or similar.
+Static website for Sitarist and Composer **Basavaraj Sivaramakrishna Rao** (fondly called "Sitar Siva" by friends).
+Built by his student Bharadwaj. Hosted on GitHub Pages.
+- **Live URL**: https://sitarsivaramakrishna.github.io
+- **Repo**: https://github.com/sitarsivaramakrishna/sitarsivaramakrishna.github.io
+- **Local path**: ~/Work/Code/mine/sitarsivaramakrishna.github.io
 
 ## About the Artist
 
 ### Full Name & Identity
 - **Basavaraj Sivaramakrishna Rao** (B. Sivaramakrishna Rao)
 - Sitarist and Composer based in Bangalore, India (Shabhari Nagar)
-- Known as "Sitar Siva" / "SitarSiva"
+- Fondly called "Sitar Siva" by friends
 - Existing (now down) website: sitarsivaramakrishna.com
 - Facebook: facebook.com/basavaraj.sivaramakrishnarao
 - LinkedIn: linkedin.com/in/basavaraj-sivaramakrishna-rao-78a32aa
@@ -18,11 +21,11 @@ Built by his student Bharadwaj. Hosted on GitHub Pages (repo: sitarsiva). URL: `
 ### Family & Training
 - Hails from a distinguished family of musicians
 - Initiated into music at age 7 by his father **B. Sudarsana Rao**
-- Disciple of the illustrious **Ustad Ahmed Hussain Khan** of **Senia Gharana** (Mian Achpal Gharana)
+- Disciple of the illustrious **Ustad Ahmed Hussain Khan** of the **Mian Achpal and Senia Gharana**
 - Brother: **B.V. Raghavendra Rao** (Violinist) — together they are the **Basavaraj Brothers**
 
 ### Guru Lineage (Gharana)
-- **Mian Achpal Gharana** — ancient and famous, great contributions to Hindustani Classical Music
+- **Mian Achpal and Senia Gharana** — ancient and famous, great contributions to Hindustani Classical Music
 - Ustad Ahmed Hussain Khan → trained by his father Ustad Bundu Khan Saheb, then under Ustad Rahimat Khan Saheb & Ustad Habib Khan Sahib
 - Became an exponent of special techniques: Raza Khani, Maseet Khani, Seni Bhaj
 - From Pune, moved to Madras at young age; teaching faculty at Bharatiya Vidya Bhavan, Madras
@@ -283,9 +286,61 @@ All source materials are in Google Drive:
 11. Multiple musical projects/bands get separate sections
 12. Contact form for inquiries
 
+## Additional Resource Locations
+- WhatsApp shared photos (Europe Tour 2024):
+  `/Users/bharadwaj/Library/CloudStorage/GoogleDrive-bharath12345@gmail.com/My Drive/Music/SivaramakrishnaRao whatsapp share/`
+  - 4 named photos used: brochure by Embassy of India France, performance picture, Europe tour schedule, French newspaper review
+  - Also contains ~20 unnamed WhatsApp images and 1 video from the tour (not yet used)
+
 ## Technical Decisions
 - Plain HTML + CSS + vanilla JavaScript (no frameworks, no build tools)
-- Hosted on GitHub Pages
+- Single-page scrolling website (all sections in index.html)
+- Hosted on GitHub Pages (deploys automatically from main branch)
 - GitHub org: sitarsivaramakrishna (https://github.com/sitarsivaramakrishna)
 - Repo: sitarsivaramakrishna.github.io
-- URL: https://sitarsivaramakrishna.github.io
+- Live URL: https://sitarsivaramakrishna.github.io
+
+## Site Architecture
+- `index.html` — single page with all sections
+- `css/style.css` — all styles, responsive design (mobile-first breakpoints at 968px, 768px, 480px)
+- `js/main.js` — hamburger menu, scroll animations, gallery lightbox with filters, lazy YouTube loading
+- `assets/images/gallery/` — 52 photos (web-friendly names, ~5MB total)
+- `assets/images/guru/` — 3 photos of Ustad Ahmed Hussain Khan
+- `assets/images/awards/` — 1 photo (Madhura Murali Puraskar)
+- `assets/images/press/` — 16 files (press clippings, reviews)
+
+## Design Theme
+- Color palette: deep maroon (#6B0F1A), gold (#C9A84C), cream (#FDF6E3), warm white (#FFFDF7), teal (#1A5C5A)
+- Fonts: Playfair Display (headings), Lora (body) — loaded from Google Fonts
+- Decorative elements: Sanskrit ornaments, gold dividers, fade-in scroll animations
+- Gallery: filterable by category (All/Concerts/With Artists/International/Awards) with lightbox viewer
+- 21 YouTube video embeds organized by: Solo Classical, Carnatic on Sitar, Fusion & Covers, Devotional, Basavaraj Brothers, Ateetam, SRK Academy
+
+## Sections on the Website
+1. Hero — full-screen with Hyderabad Palace concert photo, Sanskrit invocation
+2. About — biography, 4 highlight cards (awards, albums, countries)
+3. Guru & Lineage — tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
+4. Music — 12 YouTube embeds in 4 categories + streaming platform links
+5. Basavaraj Brothers — duo description, 6 videos, link to basavarajbrothers.com
+6. Ateetam — band description, 4 member cards, 2 videos
+7. Gallery — 40+ photos with category filters and lightbox
+8. Press & Reviews — The Hindu quote + 9 press clipping cards
+9. SRK Academy — teaching info, DVD descriptions, student performance video
+10. Contact — form (Formspree placeholder), social links
+11. Footer — quick links, streaming links, Sanskrit closing
+
+## Development Notes
+- YouTube embeds do NOT work from file:// protocol — must use http/https
+- Local dev: `cd ~/Work/Code/mine/sitarsivaramakrishna.github.io && python3 -m http.server 8080`
+- Google Drive files are read-only when copied — use `chmod u+w` after copying
+- docx files from Google Drive can be read by unzipping and parsing word/document.xml
+- The old repo had Jekyll-based content that was fully replaced (force pushed)
+- Contact form uses Formspree placeholder — needs real endpoint configured
+- yt-dlp installed via homebrew for listing YouTube channel videos
+
+## User Preferences (from Bharadwaj)
+- Asks questions one at a time
+- Prefers practical suggestions over asking (e.g., "you can suggest" for hosting, URL, tech stack)
+- Values thoroughness in research before building
+- Wants the site to reflect Indian culture and Hinduism aesthetics
+- Open to using existing infrastructure (had pre-existing GitHub org)
