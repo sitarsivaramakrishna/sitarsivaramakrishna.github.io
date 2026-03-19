@@ -100,8 +100,9 @@
 - [x] Contact form (name, email, subject dropdown, message)
 - [x] Social media links (Facebook, YouTube, Instagram, LinkedIn, Spotify)
 - [x] Location: Bangalore, India
-- [x] Subject options: Concert Booking, Collaboration, Sitar Lessons, Other
-- [ ] Configure real Formspree endpoint (currently placeholder)
+- [x] Subject options: Sitar Lessons, Collaboration, Concert Info, Other
+- [x] Contact form wired to Google Forms (submissions emailed to sitarsiva@gmail.com)
+- [x] Hidden iframe submission — users stay on page, see thank-you message
 - [ ] Add email address
 
 ---
@@ -156,10 +157,14 @@
 ### 3.4 SEO & Metadata
 - [x] Meta tags (title, description, keywords)
 - [x] Open Graph tags for social sharing
-- [ ] Structured data (JSON-LD) for musician schema
-- [ ] Sitemap.xml
-- [ ] robots.txt
-- [ ] Favicon (sitar-themed)
+- [x] Structured data (JSON-LD) for MusicGroup schema
+- [x] Sitemap.xml
+- [x] robots.txt
+- [x] Favicon (sitar-themed SVG + PNG fallbacks)
+- [x] Canonical URL and robots meta tag
+- [x] Twitter Card meta tags
+- [x] Google Search Console verification tag
+- [x] Expanded keywords meta tag
 
 ### 3.5 Performance
 - [x] Native lazy loading for images and iframes
@@ -207,8 +212,9 @@
 - [ ] Spell check all content
 - [ ] Final review with the artist
 - [x] Deploy to GitHub Pages
-- [ ] Set up custom domain (if decided later)
-- [ ] Submit to Google Search Console
+- [x] Set up custom domain — sitarsiva.in (GoDaddy, DNS A records + CNAME configured)
+- [x] CNAME file added to repo for GitHub Pages custom domain
+- [x] Submit to Google Search Console (verified, sitemap submitted)
 
 ---
 

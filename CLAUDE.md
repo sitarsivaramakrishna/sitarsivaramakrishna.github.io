@@ -3,9 +3,12 @@
 ## Project Overview
 Static website for Sitarist and Composer **Basavaraj Sivaramakrishna Rao** (fondly called "Sitar Siva" by friends).
 Built by his student Bharadwaj. Hosted on GitHub Pages.
-- **Live URL**: https://sitarsivaramakrishna.github.io
+- **Live URL**: https://sitarsiva.in (custom domain, GitHub Pages)
+- **Alt URL**: https://sitarsivaramakrishna.github.io (redirects to sitarsiva.in)
 - **Repo**: https://github.com/sitarsivaramakrishna/sitarsivaramakrishna.github.io
 - **Local path**: ~/Work/Code/mine/sitarsivaramakrishna.github.io
+- **Domain**: sitarsiva.in (registered on GoDaddy, DNS A records + CNAME → GitHub Pages)
+- **Google Search Console**: Verified, sitemap submitted
 
 ## About the Artist
 
@@ -330,7 +333,7 @@ All source materials are in Google Drive:
 7. Gallery — 40+ photos with category filters and lightbox
 8. Press & Reviews — The Hindu quote + 9 press clipping cards
 9. SRK Academy — teaching info, DVD descriptions, student performance video
-10. Contact — form (Formspree placeholder), social links
+10. Contact — form (Google Forms backend, emails to sitarsiva@gmail.com), social links
 11. Footer — quick links, streaming links, Sanskrit closing
 
 ## Development Notes
@@ -339,8 +342,23 @@ All source materials are in Google Drive:
 - Google Drive files are read-only when copied — use `chmod u+w` after copying
 - docx files from Google Drive can be read by unzipping and parsing word/document.xml
 - The old repo had Jekyll-based content that was fully replaced (force pushed)
-- Contact form uses Formspree placeholder — needs real endpoint configured
 - yt-dlp installed via homebrew for listing YouTube channel videos
+
+## Contact Form
+- Backend: Google Forms (https://docs.google.com/forms/d/e/1FAIpQLScAJEA-vUePCZ4yjO0JfTv15O-SB4elWHFLbCBcwsmQNV5OCw/formResponse)
+- Submissions emailed to: sitarsiva@gmail.com
+- Entry IDs: entry.565664710 (Name), entry.2011935272 (Email), entry.654614009 (Subject), entry.1939520428 (Message)
+- Subject options: Sitar Lessons, Collaboration, Concert Info, Other
+- Posts to hidden iframe to keep user on page; shows thank-you message after submit
+
+## SEO
+- JSON-LD structured data: MusicGroup schema with social links, genres, location
+- Meta tags: canonical URL, author, robots, expanded keywords
+- Open Graph + Twitter Card tags with absolute image URLs
+- robots.txt allows all crawlers, points to sitemap.xml
+- sitemap.xml lists site URL
+- Google Search Console: verified via HTML meta tag, sitemap submitted
+- Domain: sitarsiva.in (GoDaddy) → GitHub Pages (A records: 185.199.108-111.153, CNAME: www → sitarsivaramakrishna.github.io)
 
 ## User Preferences (from Bharadwaj)
 - Asks questions one at a time
