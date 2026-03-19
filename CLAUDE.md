@@ -99,7 +99,11 @@ Primary identity — solo sitar performances, compositions, albums
 
 ### Ateetam
 - Band/project name meaning "THE BEYOND" (Sanskrit)
-- Members: B. Sivaramakrishna Rao (Sitar), Shakthidhar (Flute/Bansuri), Venky DC/Venkatesh D.C. (Tabla), Varun Pradeep (Keyboard)
+- Members:
+  - B. Sivaramakrishna Rao — Sitar
+  - Shakthidhar — Flute/Bansuri (website: https://www.shakthidhar.com/)
+  - Venky DC (Venkatesh D.C.) — Tabla/Multi-percussionist (website: https://venkydc.com/). Also plays cajon, djembe, darbuka, congas, drums, keyboard, guitar. Trained under Pt. Nagaraj Gaekwad & Pt. Subhankar Banerjee. Founded IMDP Arts Trust & SUR Productions. Created "THE ONE SONG" project with UNICEF India.
+  - Varun Pradeep — Keyboard
 - Albums: "Spirit of India" (2015), "Song of the Soul" (2016), "Tracing Beyond" (2017), "Incredible India"
 - Album release by Dr. M. Balamuralikrishna
 - Facebook: facebook.com/ateetam
