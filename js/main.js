@@ -148,3 +148,11 @@ document.querySelectorAll('.press-card').forEach(card => {
     }
   });
 });
+
+/* === Contact Form Submission === */
+function submitContactForm(form) {
+  setTimeout(function() {
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }, 500);
+}
