@@ -214,6 +214,7 @@
 - [x] Deploy to GitHub Pages
 - [x] Set up custom domain — sitarsiva.in (GoDaddy, DNS A records + CNAME configured)
 - [x] CNAME file added to repo for GitHub Pages custom domain
+- [x] HTTPS enforced (Let's Encrypt certificate provisioned by GitHub)
 - [x] Submit to Google Search Console (verified, sitemap submitted)
 
 ---
