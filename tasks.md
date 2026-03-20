@@ -63,7 +63,7 @@
 - [x] Lazy loading (native browser loading="lazy")
 - [x] Hover-to-reveal captions
 - [x] 40+ photos displayed including Europe Tour 2024 photos
-- [ ] Create optimized thumbnails for faster loading
+- [x] Create optimized thumbnails for faster loading (WebP, 400px max)
 
 ### 1.6 Basavaraj Brothers Section
 - [x] About the duo (Sitar + Violin)
@@ -169,9 +169,9 @@
 ### 3.5 Performance
 - [x] Native lazy loading for images and iframes
 - [x] Small image sizes (~5MB total for 52 photos)
-- [ ] WebP format conversion
-- [ ] Minified CSS/JS
-- [ ] Optimized thumbnails
+- [x] WebP format conversion — all 71 images converted (31% smaller than JPG)
+- [x] Minified CSS/JS — style.min.css (21% saved), main.min.js (20% saved)
+- [x] Optimized thumbnails — 53 gallery thumbs at 400px max in gallery/thumbs/ (916K vs 5.2M full-size)
 
 ### 3.6 Analytics
 - [x] Google Analytics (GA4) integration — Measurement ID: G-JLHLLCTKT0
@@ -187,7 +187,7 @@
 - [x] Copied 16 press review files
 - [x] Copied 4 Europe Tour 2024 photos from WhatsApp share folder
 - [x] Renamed gallery files to web-friendly names (lowercase, hyphens)
-- [ ] Create optimized thumbnails
+- [x] Create optimized thumbnails (400px WebP in gallery/thumbs/)
 
 ### 4.2 Written Content
 - [x] Biography text written (from docx + web research)

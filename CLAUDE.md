@@ -308,13 +308,23 @@ All source materials are in Google Drive:
 - Live URL: https://sitarsivaramakrishna.github.io
 
 ## Site Architecture
-- `index.html` — single page with all sections
-- `css/style.css` — all styles, responsive design (mobile-first breakpoints at 968px, 768px, 480px)
-- `js/main.js` — hamburger menu, scroll animations, gallery lightbox with filters, lazy YouTube loading
-- `assets/images/gallery/` — 52 photos (web-friendly names, ~5MB total)
+- `index.html` — single page with all sections (uses minified CSS/JS)
+- `css/style.css` — source styles; `css/style.min.css` — minified (served to users)
+- `js/main.js` — source JS; `js/main.min.js` — minified (served to users)
+- `assets/images/gallery/` — 52 photos in JPG + WebP formats
+- `assets/images/gallery/thumbs/` — 400px WebP thumbnails (used in gallery grid, 916K total)
 - `assets/images/guru/` — 3 photos of Ustad Ahmed Hussain Khan
 - `assets/images/awards/` — 1 photo (Madhura Murali Puraskar)
 - `assets/images/press/` — 16 files (press clippings, reviews)
+- All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
+
+## Performance
+- WebP format for all images (31% smaller than JPG)
+- Gallery grid loads 400px thumbnails; lightbox loads full-size WebP via data-full attribute
+- CSS minified: 19K → 15K (21% saved)
+- JS minified: 5.3K → 4.3K (20% saved)
+- Native lazy loading on all images and iframes
+- Hero background uses WebP
 
 ## Design Theme
 - Color palette: deep maroon (#6B0F1A), gold (#C9A84C), cream (#FDF6E3), warm white (#FFFDF7), teal (#1A5C5A)
