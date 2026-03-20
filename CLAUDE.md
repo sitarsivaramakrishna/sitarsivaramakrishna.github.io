@@ -351,6 +351,10 @@ All source materials are in Google Drive:
 - Subject options: Sitar Lessons, Collaboration, Concert Info, Other
 - Posts to hidden iframe to keep user on page; shows thank-you message after submit
 
+## Analytics
+- Google Analytics (GA4) — Measurement ID: G-JLHLLCTKT0
+- Dashboard: https://analytics.google.com
+
 ## SEO
 - JSON-LD structured data: MusicGroup schema with social links, genres, location
 - Meta tags: canonical URL, author, robots, expanded keywords

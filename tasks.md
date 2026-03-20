@@ -174,7 +174,7 @@
 - [ ] Optimized thumbnails
 
 ### 3.6 Analytics
-- [ ] Google Analytics integration (optional)
+- [x] Google Analytics (GA4) integration — Measurement ID: G-JLHLLCTKT0
 
 ---
 
