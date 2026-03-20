@@ -78,7 +78,7 @@ function openLightbox(index) {
   if (!item) return;
   const img = item.querySelector('img');
   const caption = item.querySelector('.gallery-caption');
-  lightboxImg.src = img.src;
+  lightboxImg.src = img.dataset.full || img.src;
   lightboxImg.alt = img.alt;
   lightboxCaption.textContent = caption ? caption.textContent : '';
   lightbox.classList.add('active');

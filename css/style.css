@@ -190,7 +190,7 @@ section:nth-child(even) {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('../assets/images/gallery/40-basavaraj-brothers-hydrabad-palace.jpg') center center / cover no-repeat;
+  background: url('../assets/images/gallery/40-basavaraj-brothers-hydrabad-palace.webp') center center / cover no-repeat;
   filter: brightness(0.35);
 }
 
