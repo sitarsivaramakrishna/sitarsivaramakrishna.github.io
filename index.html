@@ -1115,7 +1115,7 @@
           </div>
         </div>
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLScAJEA-vUePCZ4yjO0JfTv15O-SB4elWHFLbCBcwsmQNV5OCw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitContactForm(this)">
+        <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLScAJEA-vUePCZ4yjO0JfTv15O-SB4elWHFLbCBcwsmQNV5OCw/formResponse" method="POST" target="hidden_iframe" onsubmit="return submitContactForm(this)">
           <input type="text" name="entry.565664710" placeholder="Your Name" required>
           <input type="email" name="entry.2011935272" placeholder="Your Email" required>
           <select name="entry.654614009">
@@ -1126,6 +1126,13 @@
             <option value="">Other</option>
           </select>
           <textarea name="entry.1939520428" placeholder="Your Message" required></textarea>
+          <!-- Honeypot - hidden from humans, bots fill it -->
+          <input type="text" name="website" id="hp-field" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+          <!-- Math CAPTCHA -->
+          <div class="captcha-row">
+            <label id="captcha-label"></label>
+            <input type="text" id="captcha-answer" placeholder="Your answer" required autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
         <div id="form-success" style="display:none; text-align:center; padding:2rem;">

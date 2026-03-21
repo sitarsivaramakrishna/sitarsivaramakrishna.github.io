@@ -1003,6 +1003,22 @@ section:nth-child(even) {
   resize: vertical;
 }
 
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.captcha-row label {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.captcha-row input {
+  max-width: 120px;
+}
+
 /* === FOOTER === */
 .footer {
   background: var(--dark);

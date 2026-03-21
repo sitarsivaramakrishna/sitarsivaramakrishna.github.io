@@ -149,10 +149,30 @@ document.querySelectorAll('.press-card').forEach(card => {
   });
 });
 
-/* === Contact Form Submission === */
+/* === Contact Form CAPTCHA & Submission === */
+var captchaA, captchaB;
+function generateCaptcha() {
+  captchaA = Math.floor(Math.random() * 10) + 1;
+  captchaB = Math.floor(Math.random() * 10) + 1;
+  var label = document.getElementById('captcha-label');
+  if (label) label.textContent = 'What is ' + captchaA + ' + ' + captchaB + '?';
+}
+generateCaptcha();
+
 function submitContactForm(form) {
+  // Honeypot check
+  if (document.getElementById('hp-field').value) return false;
+  // CAPTCHA check
+  var answer = parseInt(document.getElementById('captcha-answer').value, 10);
+  if (answer !== captchaA + captchaB) {
+    alert('Incorrect answer. Please try again.');
+    generateCaptcha();
+    document.getElementById('captcha-answer').value = '';
+    return false;
+  }
   setTimeout(function() {
     form.style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   }, 500);
+  return true;
 }
