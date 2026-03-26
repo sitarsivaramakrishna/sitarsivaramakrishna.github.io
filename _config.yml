@@ -1,0 +1,5 @@
+exclude:
+  - wikipedia-draft.md
+  - website-summary.md
+  - CLAUDE.md
+  - tasks.md
