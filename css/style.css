@@ -174,6 +174,77 @@ section:nth-child(even) {
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+/* === SUB-NAVIGATION (section nav for sub-pages) === */
+.sub-nav {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(253, 246, 227, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 0;
+}
+
+.sub-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  height: 38px;
+  overflow-x: auto;
+}
+
+.sub-nav a {
+  color: var(--text-light);
+  font-family: 'Lora', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.sub-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.sub-nav a:hover {
+  color: var(--maroon);
+}
+
+.sub-nav a:hover::after,
+.sub-nav a.active::after {
+  width: 100%;
+}
+
+.sub-nav a.active {
+  color: var(--maroon);
+  font-weight: 600;
+}
+
+/* Offset page content when sub-nav is present */
+.has-sub-nav .page-header {
+  margin-top: 38px;
+}
+
+.has-sub-nav section[id] {
+  scroll-margin-top: 110px;
+}
+
 /* === HERO === */
 .hero {
   position: relative;
@@ -280,6 +351,25 @@ section:nth-child(even) {
 .btn-outline:hover {
   background: var(--light-gold);
   color: var(--dark);
+}
+
+.btn-concerts {
+  background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  animation: pulse-glow 2s infinite;
+}
+
+.btn-concerts:hover {
+  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
+  color: #fff;
+  transform: scale(1.05);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(212, 118, 44, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(212, 118, 44, 0.7); }
 }
 
 .scroll-indicator {
@@ -560,6 +650,35 @@ section:nth-child(even) {
 
 .raga-links a:hover {
   color: var(--maroon);
+}
+
+/* Compact Raga Dictionary */
+.raga-dictionary-compact {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.raga-dictionary-compact .raga-card {
+  padding: 10px 14px;
+  border-left-width: 2px;
+}
+
+.raga-dictionary-compact .raga-name {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.raga-dictionary-compact .raga-links li {
+  margin-bottom: 2px;
+}
+
+.raga-dictionary-compact .raga-links a {
+  font-size: 0.8rem;
+}
+
+.raga-dictionary-compact .raga-links a::before {
+  font-size: 0.5rem;
 }
 
 /* Streaming Links */
@@ -1087,6 +1206,228 @@ section:nth-child(even) {
   transform: translateY(0);
 }
 
+/* === PAGE HEADER (sub-pages) === */
+.page-header {
+  position: relative;
+  height: 40vh;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.page-header .hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+
+.page-header .hero-content .hero-sub {
+  margin-bottom: 0;
+}
+
+.page-header-emblem {
+  max-height: 140px;
+  width: auto;
+  margin: 0 auto 12px;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+}
+
+/* === EXPLORE CARDS === */
+.explore-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.explore-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 280px;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.explore-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  color: inherit;
+}
+
+.explore-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s;
+}
+
+.explore-card:hover .explore-card-bg {
+  transform: scale(1.05);
+}
+
+.explore-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.2) 60%, transparent 100%);
+}
+
+.explore-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+  color: #fff;
+  width: 100%;
+}
+
+.explore-card-emblem {
+  height: 60px;
+  width: auto;
+  margin-bottom: 8px;
+  filter: brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.explore-card-content h3 {
+  font-size: 1.4rem;
+  color: var(--light-gold);
+  margin-bottom: 4px;
+}
+
+.explore-card-content p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+}
+
+/* Emblem-only explore cards (no background photo) */
+.explore-card-emblem-only {
+  background: var(--cream);
+  border: 2px solid var(--border-gold);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.explore-card-emblem-only:hover {
+  border-color: var(--gold);
+  background: var(--warm-white);
+}
+
+.explore-card-emblem-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.explore-card-emblem-center img {
+  max-height: 160px;
+  width: auto;
+  max-width: 80%;
+  transition: transform 0.4s;
+}
+
+.explore-card-emblem-only:hover .explore-card-emblem-center img {
+  transform: scale(1.08);
+}
+
+.explore-card-label {
+  width: 100%;
+  text-align: center;
+  padding: 12px 16px;
+  background: rgba(107, 15, 26, 0.08);
+  border-top: 1px solid var(--border-gold);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* === PROJECT FEATURE (Composer page) === */
+.project-feature {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.project-feature-header {
+  background: linear-gradient(135deg, var(--maroon), var(--deep-red));
+  padding: 28px 32px;
+  color: #fff;
+}
+
+.project-feature-header h3 {
+  font-size: 1.6rem;
+  color: var(--light-gold);
+  margin-bottom: 4px;
+}
+
+.project-feature-credit {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+}
+
+.project-feature-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 32px;
+}
+
+.project-feature-text p {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.project-feature-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-feature-videos .video-card {
+  width: 100%;
+}
+
+/* === UPCOMING CONCERTS === */
+.concerts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.concert-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border: 2px solid var(--border-gold);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.concert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.concert-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 968px) {
   .about-grid,
@@ -1102,6 +1443,10 @@ section:nth-child(even) {
 
   .hero-content h1 { font-size: 2.5rem; }
   .section-title { font-size: 1.8rem; }
+  .explore-cards { grid-template-columns: 1fr; }
+  .explore-card { height: 200px; }
+  .concerts-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .project-feature-body { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1126,6 +1471,16 @@ section:nth-child(even) {
   }
 
   .hamburger { display: flex; }
+
+  .sub-nav-inner {
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0 16px;
+  }
+
+  .sub-nav a {
+    font-size: 0.75rem;
+  }
 
   .hero-content h1 { font-size: 2rem; }
   .hero-content .hero-sub { font-size: 1.1rem; }

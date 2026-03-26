@@ -2,37 +2,43 @@
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('active');
-});
-
-// Close mobile nav on link click
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('active');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
   });
-});
 
-// Active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY + 100;
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if (link) {
+  // Close mobile nav on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+}
+
+/* === Sub-navigation scroll highlighting === */
+const subNav = document.querySelector('.sub-nav');
+if (subNav) {
+  const subNavLinks = subNav.querySelectorAll('a[href^="#"]');
+  const offset = 120;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + offset;
+    subNavLinks.forEach(link => {
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+      const top = target.offsetTop;
+      const height = target.offsetHeight;
       if (scrollY >= top && scrollY < top + height) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
       }
-    }
+    });
   });
-});
+}
 
 /* === Fade-in on scroll === */
 const fadeElements = document.querySelectorAll('.fade-in');
@@ -157,7 +163,7 @@ function generateCaptcha() {
   var label = document.getElementById('captcha-label');
   if (label) label.textContent = 'What is ' + captchaA + ' + ' + captchaB + '?';
 }
-generateCaptcha();
+if (document.getElementById('captcha-label')) generateCaptcha();
 
 function submitContactForm(form) {
   // Honeypot check

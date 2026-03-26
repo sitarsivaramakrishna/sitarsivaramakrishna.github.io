@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="ringGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8D5A3"/>
+      <stop offset="30%" style="stop-color:#C9A84C"/>
+      <stop offset="50%" style="stop-color:#8B6914"/>
+      <stop offset="70%" style="stop-color:#C9A84C"/>
+      <stop offset="100%" style="stop-color:#E8D5A3"/>
+    </linearGradient>
+    <linearGradient id="ringInner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C9A84C"/>
+      <stop offset="100%" style="stop-color:#8B6914"/>
+    </linearGradient>
+    <linearGradient id="maroonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B1A2B"/>
+      <stop offset="100%" style="stop-color:#5A0E1B"/>
+    </linearGradient>
+    <clipPath id="photoClip">
+      <circle cx="200" cy="155" r="105"/>
+    </clipPath>
+    <filter id="photoShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <filter id="textShadow">
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Outer ring -->
+  <circle cx="200" cy="200" r="195" fill="none" stroke="url(#ringGold)" stroke-width="5"/>
+  <!-- Second ring -->
+  <circle cx="200" cy="200" r="188" fill="none" stroke="url(#ringGold)" stroke-width="1.5"/>
+
+  <!-- Maroon band at bottom for text -->
+  <path d="M 45 240 A 170 170 0 0 1 355 240 L 355 240 A 195 195 0 0 1 5 240 Z" fill="url(#maroonGrad)" opacity="0"/>
+
+  <!-- Background fill -->
+  <circle cx="200" cy="200" r="186" fill="#FDF6E3" opacity="0.3"/>
+
+  <!-- Photo of Siva with sitar in circular frame -->
+  <g filter="url(#photoShadow)">
+    <circle cx="200" cy="155" r="108" fill="none" stroke="url(#ringGold)" stroke-width="4"/>
+    <circle cx="200" cy="155" r="106" fill="none" stroke="url(#ringInner)" stroke-width="1"/>
+    <image xlink:href="gallery/about-portrait.webp" x="80" y="35" width="240" height="240" clip-path="url(#photoClip)" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+
+  <!-- Bottom maroon arc background -->
+  <path d="M 32 265 Q 200 250 368 265 L 368 290 Q 200 275 32 290 Z" fill="url(#maroonGrad)" opacity="0.9"/>
+
+  <!-- SRK Text - large and prominent -->
+  <text x="200" y="318" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="42" font-weight="700" fill="#6B0F1A" letter-spacing="8" filter="url(#textShadow)">SRK</text>
+
+  <!-- Gold separator line -->
+  <line x1="130" y1="328" x2="270" y2="328" stroke="url(#ringGold)" stroke-width="2"/>
+
+  <!-- Academy of Music -->
+  <text x="200" y="350" text-anchor="middle" font-family="'Lora', Georgia, serif" font-size="14" fill="#5A5A5A" letter-spacing="4" font-weight="600">ACADEMY OF MUSIC</text>
+
+  <!-- Gharana -->
+  <text x="200" y="372" text-anchor="middle" font-family="'Lora', Georgia, serif" font-size="9" fill="#C9A84C" font-style="italic" letter-spacing="1.5">Mian Achpal &amp; Senia Gharana</text>
+
+  <!-- Decorative corner flourishes on the maroon band -->
+  <text x="200" y="283" text-anchor="middle" font-family="serif" font-size="14" fill="#E8D5A3" letter-spacing="6" opacity="0.9">&#10045; &#10045; &#10045;</text>
+
+  <!-- Small lotus at very bottom -->
+  <g transform="translate(200, 390)" opacity="0.4">
+    <path d="M 0 0 Q -5 -8 0 -13 Q 5 -8 0 0" fill="#C9A84C"/>
+    <path d="M 0 0 Q -10 -5 -8 -13 Q -2 -9 0 0" fill="#C9A84C"/>
+    <path d="M 0 0 Q 10 -5 8 -13 Q 2 -9 0 0" fill="#C9A84C"/>
+  </g>
+</svg>
