@@ -32,8 +32,21 @@
 - [x] Explore section on homepage with 3 cards linking to sub-pages
 - [x] Page-specific footers (personal vs Aruna Music social links)
 
+### 1.05 Random Hero Background
+- [x] 7 concert photos rotate randomly on every page load (all 4 pages)
+- [x] Processed 6 new photos from ~/Downloads/newpics/ (cropped, converted to WebP)
+- [x] Images: Hyderabad Palace, Drive East NY, Basel, Stanford, Bharat Sangeet Utsav, Shalle Bangalore, Jugalbandhi
+- [x] Background set via JS IIFE; CSS fallback color (#1a1a1a)
+- [x] All images stored in assets/images/heroes/ (~512KB total)
+
+### 1.06 Wikipedia & Documentation
+- [x] Website summary (website-summary.md)
+- [x] Wikipedia article draft in wikitext format (wikipedia-draft.md)
+- [x] _config.yml to exclude .md files from Jekyll build
+- [x] .nojekyll marker file
+
 ### 1.1 Home / Landing Page
-- [x] Hero section with Hyderabad Palace concert photo and Sanskrit invocation
+- [x] Hero section with randomly rotating concert photos and Sanskrit invocation
 - [x] Brief introduction (tagline: Sitarist, Composer, Guru)
 - [x] Navigation bar (responsive hamburger menu on mobile)
 - [x] CTA buttons (Listen, Upcoming Concerts with pulse-glow animation)

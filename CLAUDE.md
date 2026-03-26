@@ -320,9 +320,14 @@ All source materials are in Google Drive:
 - `assets/images/guru/` — 3 photos of Ustad Ahmed Hussain Khan
 - `assets/images/awards/` — 1 photo (Madhura Murali Puraskar)
 - `assets/images/press/` — 16 files (press clippings, reviews)
+- `assets/images/heroes/` — 7 hero background images (WebP, ~512KB total) for random rotation
 - `assets/images/concerts/` — Concert brochure images
 - `assets/images/aruna-logo.png` — Aruna Music Entertainment logo (transparent background)
 - `assets/images/srk-academy-logo.svg` — SRK Academy emblem (SVG with embedded photo via `<image>` tag)
+- `_config.yml` — Jekyll config excluding .md files from build (prevents Liquid parse errors)
+- `.nojekyll` — Marker file for GitHub Pages
+- `website-summary.md` — Comprehensive summary of the entire website
+- `wikipedia-draft.md` — Wikipedia article draft in wikitext format
 - All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
 
 ## Navigation
@@ -345,7 +350,14 @@ All source materials are in Google Drive:
 - CSS minified: 19K → 15K (21% saved)
 - JS minified: 5.3K → 4.3K (20% saved)
 - Native lazy loading on all images and iframes
-- Hero background uses WebP
+- Hero background uses WebP; 7 images rotate randomly (~512KB total)
+
+## Random Hero Background
+- 7 concert photos in `assets/images/heroes/` rotate randomly on each page load
+- Images: Hyderabad Palace (original), Drive East NY, Basel Concert, Stanford, Bharat Sangeet Utsav, Shalle Bangalore, Jugalbandhi Concert
+- Background set via JS (IIFE in main.js), CSS `.hero-bg` has `#1a1a1a` fallback
+- All pages (homepage + 3 sub-pages) share the same `.hero-bg` class and random rotation
+- Source photos from `/Users/bharadwaj/Downloads/newpics/` — cropped and converted to WebP via PIL
 
 ## Design Theme
 - Color palette: deep maroon (#6B0F1A), gold (#C9A84C), cream (#FDF6E3), warm white (#FFFDF7), teal (#1A5C5A)
@@ -360,7 +372,7 @@ All source materials are in Google Drive:
 ## Sections on the Website
 
 ### Homepage (index.html)
-1. Hero — full-screen with concert photo, "Listen" + "Upcoming Concerts" buttons
+1. Hero — full-screen with randomly rotating concert photo (7 images), "Listen" + "Upcoming Concerts" buttons
 2. Explore — 3 cards linking to Sitarist (photo bg), Composer (Aruna emblem), Guru (SRK emblem)
 3. Upcoming Concerts — concert brochure images in gold-border cards
 4. About — biography, 4 highlight cards (awards, albums, countries)
@@ -393,6 +405,8 @@ All source materials are in Google Drive:
 - docx files from Google Drive can be read by unzipping and parsing word/document.xml
 - The old repo had Jekyll-based content that was fully replaced (force pushed)
 - yt-dlp installed via homebrew for listing YouTube channel videos
+- GitHub Pages uses `legacy` build type (Jekyll) — `_config.yml` excludes .md files to prevent Liquid parse errors from wikitext `{{}}` syntax in wikipedia-draft.md
+- `.nojekyll` file also present but insufficient alone for legacy build type
 
 ## Contact Form
 - Backend: Google Forms (https://docs.google.com/forms/d/e/1FAIpQLScAJEA-vUePCZ4yjO0JfTv15O-SB4elWHFLbCBcwsmQNV5OCw/formResponse)
