@@ -1,3 +1,21 @@
+/* === Random Hero Background === */
+(function() {
+  var heroes = [
+    'assets/images/heroes/hero-hyderabad-palace.webp',
+    'assets/images/heroes/hero-drive-east-ny.webp',
+    'assets/images/heroes/hero-basel-concert.webp',
+    'assets/images/heroes/hero-stanford-sanjose.webp',
+    'assets/images/heroes/hero-bharat-sangeet-utsav.webp',
+    'assets/images/heroes/hero-shalle-bangalore.webp',
+    'assets/images/heroes/hero-jugalbandhi-concert.webp'
+  ];
+  var bg = document.querySelector('.hero-bg');
+  if (bg) {
+    var img = heroes[Math.floor(Math.random() * heroes.length)];
+    bg.style.backgroundImage = 'url(' + img + ')';
+  }
+})();
+
 /* === Navigation === */
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
