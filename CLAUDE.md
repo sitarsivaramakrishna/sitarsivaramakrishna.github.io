@@ -301,14 +301,18 @@ All source materials are in Google Drive:
 
 ## Technical Decisions
 - Plain HTML + CSS + vanilla JavaScript (no frameworks, no build tools)
-- Single-page scrolling website (all sections in index.html)
+- **Multi-page site** with 4 pages: Homepage + 3 sub-pages (Sitarist, Composer, Guru)
 - Hosted on GitHub Pages (deploys automatically from main branch)
 - GitHub org: sitarsivaramakrishna (https://github.com/sitarsivaramakrishna)
 - Repo: sitarsivaramakrishna.github.io
 - Live URL: https://sitarsivaramakrishna.github.io
+- CSS minification via Python `csscompressor`; JS minification via Python `rjsmin`
 
 ## Site Architecture
-- `index.html` — single page with all sections (uses minified CSS/JS)
+- `index.html` — Homepage: Hero, Explore cards, Upcoming Concerts, About, Press, Contact, Footer
+- `sitarist.html` — Raga Dictionary, Solo Classical, Basavaraj Brothers, Ateetam
+- `composer.html` — Projects (Jay Rang Rang), Gallery (40+ photos with filters)
+- `guru.html` — Guru & Lineage, SRK Academy (DVDs + student videos), Testimonials (placeholder)
 - `css/style.css` — source styles; `css/style.min.css` — minified (served to users)
 - `js/main.js` — source JS; `js/main.min.js` — minified (served to users)
 - `assets/images/gallery/` — 52 photos in JPG + WebP formats
@@ -316,7 +320,24 @@ All source materials are in Google Drive:
 - `assets/images/guru/` — 3 photos of Ustad Ahmed Hussain Khan
 - `assets/images/awards/` — 1 photo (Madhura Murali Puraskar)
 - `assets/images/press/` — 16 files (press clippings, reviews)
+- `assets/images/concerts/` — Concert brochure images
+- `assets/images/aruna-logo.png` — Aruna Music Entertainment logo (transparent background)
+- `assets/images/srk-academy-logo.svg` — SRK Academy emblem (SVG with embedded photo via `<image>` tag)
 - All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
+
+## Navigation
+- Main nav: Home | Sitarist | Composer | Guru | Contact
+- Sub-pages have a **secondary sub-navigation bar** (fixed below main nav) for section-level navigation
+  - Sitarist: Raga Dictionary | Classical | Basavaraj Brothers | Ateetam
+  - Composer: Projects | Gallery
+  - Guru: Guru & Lineage | The Academy | Testimonials
+- Sub-pages use `<body class="has-sub-nav">` for CSS offset
+- Sub-nav scroll highlighting via IntersectionObserver in main.js
+- CSS `scroll-margin-top: 110px` for proper anchor scrolling with two fixed navbars
+
+## Page-Specific Footers
+- Homepage + Sitarist + Guru: Personal social links (instagram.com/sitarsiva, personal Facebook/YouTube)
+- Composer: Aruna Music social links (instagram.com/arunamusic_in, facebook.com/ArunaMusicEntertainment)
 
 ## Performance
 - WebP format for all images (31% smaller than JPG)
@@ -331,20 +352,39 @@ All source materials are in Google Drive:
 - Fonts: Playfair Display (headings), Lora (body) — loaded from Google Fonts
 - Decorative elements: Sanskrit ornaments, gold dividers, fade-in scroll animations
 - Gallery: filterable by category (All/Concerts/With Artists/International/Awards) with lightbox viewer
-- 21 YouTube video embeds organized by: Solo Classical, Carnatic on Sitar, Fusion & Covers, Devotional, Basavaraj Brothers, Ateetam, SRK Academy
+- 21+ YouTube video embeds organized across sub-pages
+- Page headers on sub-pages: 40vh height with emblem (SRK Academy SVG or Aruna logo)
+- Explore cards on homepage: cream bg with gold border, centered emblems
+- Concert button: gradient saffron-to-deep-red with pulse-glow animation
 
 ## Sections on the Website
-1. Hero — full-screen with Hyderabad Palace concert photo, Sanskrit invocation
-2. About — biography, 4 highlight cards (awards, albums, countries)
-3. Guru & Lineage — tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
-4. Music — 12 YouTube embeds in 4 categories + streaming platform links
-5. Basavaraj Brothers — duo description, 6 videos, link to basavarajbrothers.com
-6. Ateetam — band description, 4 member cards, 2 videos
-7. Gallery — 40+ photos with category filters and lightbox
-8. Press & Reviews — The Hindu quote + 9 press clipping cards
-9. SRK Academy — teaching info, DVD descriptions, student performance video
-10. Contact — form (Google Forms backend, emails to sitarsiva@gmail.com), social links
-11. Footer — quick links, streaming links, Sanskrit closing
+
+### Homepage (index.html)
+1. Hero — full-screen with concert photo, "Listen" + "Upcoming Concerts" buttons
+2. Explore — 3 cards linking to Sitarist (photo bg), Composer (Aruna emblem), Guru (SRK emblem)
+3. Upcoming Concerts — concert brochure images in gold-border cards
+4. About — biography, 4 highlight cards (awards, albums, countries)
+5. Press & Reviews — The Hindu quote + 9 press clipping cards
+6. Contact — form (Google Forms backend, emails to sitarsiva@gmail.com), social links
+7. Footer — quick links, streaming links, Sanskrit closing
+
+### Sitarist (sitarist.html)
+1. Page Header
+2. Raga Dictionary — compact grid with streaming links
+3. Solo Sitar — Classical — Hindustani, Carnatic, Fusion, Devotional videos
+4. Basavaraj Brothers — duo description, 6 videos
+5. Ateetam — band description, member cards, 3 videos
+
+### Composer (composer.html)
+1. Page Header with Aruna Music logo
+2. Projects — Jay Rang Rang (Kashi La Lumière), more to come
+3. Gallery — 40+ photos with category filters and lightbox
+
+### Guru (guru.html)
+1. Page Header with SRK Academy SVG emblem
+2. Guru & Lineage — tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
+3. The Academy — teaching info, DVDs, 2 student performance videos
+4. Testimonials — placeholder (coming soon)
 
 ## Development Notes
 - YouTube embeds do NOT work from file:// protocol — must use http/https

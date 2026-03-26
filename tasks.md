@@ -21,13 +21,24 @@
 
 ## Phase 1: Core Pages & Structure
 
+### 1.0 Multi-Page Restructuring
+- [x] Restructured from single-page to multi-page site (4 pages)
+- [x] Homepage (index.html): Hero, Explore cards, Upcoming Concerts, About, Press, Contact
+- [x] Sitarist page (sitarist.html): Raga Dictionary, Classical, Basavaraj Brothers, Ateetam
+- [x] Composer page (composer.html): Projects, Gallery
+- [x] Guru page (guru.html): Guru & Lineage, Academy, Testimonials
+- [x] Sub-navigation bars on all 3 sub-pages (fixed below main nav)
+- [x] Sub-nav scroll highlighting via IntersectionObserver
+- [x] Explore section on homepage with 3 cards linking to sub-pages
+- [x] Page-specific footers (personal vs Aruna Music social links)
+
 ### 1.1 Home / Landing Page
 - [x] Hero section with Hyderabad Palace concert photo and Sanskrit invocation
 - [x] Brief introduction (tagline: Sitarist, Composer, Guru)
 - [x] Navigation bar (responsive hamburger menu on mobile)
-- [x] CTA buttons (Listen, Know More)
+- [x] CTA buttons (Listen, Upcoming Concerts with pulse-glow animation)
 - [x] Scroll indicator
-- [ ] Upcoming events / latest news ticker
+- [x] Upcoming Concerts section with concert brochure images
 - [x] Footer with social links, streaming platform icons, copyright
 
 ### 1.2 About / Biography Section
@@ -46,17 +57,18 @@
 - [x] Historical significance of Rahimat Khan (kharaj-shadaj string invention)
 - [x] Guru-Shishya parampara explanation
 
-### 1.4 Music / Videos Section
-- [x] 21 YouTube video embeds total across all sections
-- [x] Categorized: Solo Classical (3), Carnatic on Sitar (3), Fusion & Covers (3), Devotional (3)
+### 1.4 Music / Videos Section (now on sitarist.html)
+- [x] 21+ YouTube video embeds total across all sections
+- [x] Categorized: Solo Classical, Carnatic on Sitar, Fusion & Covers, Devotional
 - [x] Responsive video grid layout
 - [x] Video titles and brief descriptions
 - [x] Streaming platform links section (Spotify, Apple Music, Amazon, JioSaavn, YouTube)
+- [x] Raga Dictionary as top-level section with compact grid layout
 - [ ] Album grid/list with cover art, year, label
 - [ ] Embedded Spotify player widgets for select albums
 - [ ] Audio samples from WAV files
 
-### 1.5 Gallery Section
+### 1.5 Gallery Section (now on composer.html)
 - [x] Photo gallery with lightbox functionality (click to expand, keyboard nav)
 - [x] Categories with filter buttons: All, Concerts, With Artists, International, Awards
 - [x] Captions for each photo (from filename descriptions)
@@ -81,14 +93,21 @@
 - [ ] Links to individual member websites (shakthidhar.com, venkydc.com)
 - [ ] Member photos on cards
 
-### 1.8 SRK Academy Section
+### 1.8 SRK Academy Section (now on guru.html)
 - [x] About the academy / teaching practice
 - [x] What is taught: Hindustani & Carnatic Classical on Sitar
 - [x] Online classes mentioned
 - [x] Instructional DVDs: "Learn To Play Sitar" Vol 1 & 2
-- [x] Student performance video embed
+- [x] 2 student performance video embeds (Shakthi Sahitha Ganapathim + Sitar Recital)
+- [x] SRK Academy SVG emblem (with embedded artist photo)
 - [ ] Student testimonials
 - [ ] Sitar & accessories info
+
+### 1.85 Composer Projects (composer.html)
+- [x] Jay Rang Rang — Kashi La Lumière project feature card
+- [x] Maroon gradient header, two-column layout (text + 2 video embeds)
+- [x] Aruna Music Entertainment logo (white background removed via PIL)
+- [ ] Additional composer projects (to be provided by user)
 
 ### 1.9 Press & Reviews Section
 - [x] The Hindu quote (Chennai Music Season 2005)
@@ -158,7 +177,7 @@
 - [x] Meta tags (title, description, keywords)
 - [x] Open Graph tags for social sharing
 - [x] Structured data (JSON-LD) for MusicGroup schema
-- [x] Sitemap.xml
+- [x] Sitemap.xml (updated with all 4 pages)
 - [x] robots.txt
 - [x] Favicon (sitar-themed SVG + PNG fallbacks)
 - [x] Canonical URL and robots meta tag
