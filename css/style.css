@@ -1349,6 +1349,62 @@ section:nth-child(even) {
   font-style: italic;
 }
 
+/* === AME ABOUT (Composer page) === */
+.ame-about {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ame-about > p {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.ame-about h3 {
+  color: var(--maroon);
+  font-size: 1.3rem;
+  margin: 32px 0 12px;
+}
+
+.ame-vision {
+  margin: 32px 0;
+  padding: 24px 32px;
+  background: rgba(201, 168, 76, 0.08);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+}
+
+.ame-vision h3 {
+  margin-top: 0;
+}
+
+.ame-vision p {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.ame-practice-list {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.ame-practice-list li {
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--border-gold);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.98rem;
+}
+
+.ame-practice-list li::before {
+  content: '\2727';
+  color: var(--gold);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
 /* === PROJECT FEATURE (Composer page) === */
 .project-feature {
   background: #fff;
@@ -1398,6 +1454,10 @@ section:nth-child(even) {
 
 .project-feature-videos .video-card {
   width: 100%;
+}
+
+.project-feature-body.text-only {
+  grid-template-columns: 1fr;
 }
 
 /* === UPCOMING CONCERTS === */
