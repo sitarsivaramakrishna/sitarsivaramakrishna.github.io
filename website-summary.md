@@ -21,9 +21,15 @@ This page showcases the artist's performing career across multiple dimensions:
 - **Streaming Links** — Direct links to 20+ albums on Spotify, Apple Music, Amazon Music, JioSaavn, and YouTube.
 
 ### Composer (sitarsiva.in/composer.html)
-Showcases the artist's work as founder of **Aruna Music Entertainment**, his own music label that produces music across genres:
+Showcases the artist's work as founder of **Aruna Music Entertainment (AME)**, a distinguished South Indian production house founded by Aruna Sivaramakrishna Rao:
 
-- **Projects** — Features "Jay Rang Rang — Kashi La Lumiere," a spiritual composition born during meditation on the sacred evening of Devashayani Ekadashi (2017) in Berlin. The project is a collaboration with Une Production Florent Paris-Berlin, with vocals by R.P. Shravan and Varijashree Venugopal.
+- **About** — Introduction to AME with its vision ("tradition and innovation converge") and practice areas: artistic production, digital publishing, music development, international collaborations, and live concert experiences.
+- **Projects** — Five productions ordered newest-first:
+  - *Jai Jai Dattatreya* — Grand music and dance production in collaboration with IOAA (Austin, Texas), filmed in Pushkar, Rajasthan with 60+ dancers, exploring a soul's journey in search of a Guru.
+  - *Geeth Govind* (2020–2023) — Landmark collaboration with Invis Multimedia presenting all 24 Ashtapadis of Jayadeva in Hindustani-contemporary idiom, featuring Kathak by Dr. Guru Pali Chandra.
+  - *Heroes' Might — Veershakti* (September 2021) — Evocative musical play from Une Production Florent Paris-Berlin, exploring the duality of motherhood through dialogues between a mother and son.
+  - *Jay Rang Rang — Kashi La Lumière* (March 2021) — Spiritual composition born during meditation on the sacred evening of Devashayani Ekadashi (2017) in Berlin, a collaboration with Une Production Florent Paris-Berlin.
+  - *Essence of Life & The Art of Meditation* (2011) — Conceptual production inspired by J. Krishnamurti philosophy, integrating Bharatanatyam, Kuchipudi, Mohiniyattam, Odissi, and Kathak, with vocals by Dr. M. Balamuralikrishna, Hariharan, and Sanjay Abhyankar. Produced by Dega Arts.
 - **Gallery** — 40+ photographs from concerts, collaborations, and international tours, filterable by category (Concerts, With Artists, International, Awards). Photos document performances at the German Embassy in Berlin, Stanford University, Google San Francisco, Melbourne Arts Festival, Drive East Festival New York, and many more venues. Notable collaborations captured include those with Padmashree Hariharan, Ustad Shahid Parvez, Ustad Rashid Khan, Bombay Jayashree, Sivamani, Dr. M. Balamuralikrishna, and Music Director Devi Sri Prasad.
 
 ### Guru (sitarsiva.in/guru.html)

@@ -117,10 +117,17 @@
 - [ ] Sitar & accessories info
 
 ### 1.85 Composer Projects (composer.html)
-- [x] Jay Rang Rang — Kashi La Lumière project feature card
-- [x] Maroon gradient header, two-column layout (text + 2 video embeds)
+- [x] About AME section — About, Vision, Practice (above Projects)
+- [x] Sub-nav updated: About | Projects | Gallery
+- [x] Jay Rang Rang — Kashi La Lumière project feature card (release date added: 11 Mar 2021)
+- [x] Heroes' Might — Veershakti project (release date added: 13 Sep 2021, Une Production Florent credit)
+- [x] Jai Jai Dattatreya — IOAA Austin collaboration (1 video: Guru Vandana)
+- [x] Geeth Govind — Invis Multimedia, 2020–2023 (text only, no videos on AME channel)
+- [x] Essence of Life & The Art of Meditation — Dega Arts, 2011 (1 video)
+- [x] Projects ordered newest-first with release dates
+- [x] Text-only layout CSS for projects without videos
+- [x] Maroon gradient header, two-column layout (text + video embeds)
 - [x] Aruna Music Entertainment logo (white background removed via PIL)
-- [ ] Additional composer projects (to be provided by user)
 
 ### 1.9 Press & Reviews Section
 - [x] The Hindu quote (Chennai Music Season 2005)

@@ -92,6 +92,18 @@ Built by his student Bharadwaj. Hosted on GitHub Pages.
 ### Solo Artist
 Primary identity — solo sitar performances, compositions, albums
 
+### Aruna Music Entertainment (AME)
+- Founded by **Aruna Sivaramakrishna Rao** (the artist's wife)
+- Distinguished South Indian production house
+- Curates, produces, and promotes talent across India and globally
+- Projects produced under AME:
+  - **Jai Jai Dattatreya** — collaboration with IOAA (Austin, Texas), filmed in Pushkar, Rajasthan, 60+ dancers
+  - **Geeth Govind** (2020–2023) — all 24 Ashtapadis of Jayadeva in Hindustani-contemporary idiom, with Invis Multimedia & Kathak by Dr. Guru Pali Chandra
+  - **Heroes' Might – Veershakti** (Sep 2021) — musical play, Une Production Florent Paris–Berlin, Project Mère La Lumière
+  - **Jay Rang Rang – Kashi La Lumière** (Mar 2021) — spiritual composition, Une Production Florent Paris–Berlin, vocals by R.P. Shravan & Varijashree Venugopal
+  - **Essence of Life & The Art of Meditation** (2011) — J. Krishnamurti philosophy, 5 dance forms, Dega Arts, vocalists: Dr. M. Balamuralikrishna, Hariharan, Sanjay Abhyankar
+- Social: facebook.com/ArunaMusicEntertainment, instagram.com/arunamusic_in
+
 ### Basavaraj Brothers
 - Website: https://www.basavarajbrothers.com/
 - Duo: B. Sivaramakrishna Rao (Sitar) + B.V. Raghavendra Rao (Violin)
@@ -243,6 +255,13 @@ All source materials are in Google Drive:
 - `PHOTOS/` — Additional photos
 - `Audio Wav files RAGA/` — Audio recordings
 - `videos/` — Video files
+- `AME PROJECTS/` — Aruna Music Entertainment project docs:
+  - `ARUNA MUSIC ENTERTAINMENT - DISCRIPTION.docx` — AME overview (About, Vision, Practice, Selected Works)
+  - `Essence of Life .docx` — Essence of Life & The Art of Meditation project details
+  - `GEET GOVIND  PROJECT.docx` — Geeth Govind project (24 Ashtapadis of Jayadeva)
+  - `JaiJai Dattatreya  Song.docx` — Jai Jai Dattatreya project (IOAA collaboration)
+  - `JAY RANG RANG.docx` — Jay Rang Rang project details
+  - `VEERSHAKTHI.docx` — Heroes' Might – Veershakti project details
 
 ## Design Direction
 - Theme: Indian culture, Hinduism, and music
@@ -311,7 +330,7 @@ All source materials are in Google Drive:
 ## Site Architecture
 - `index.html` — Homepage: Hero, Explore cards, Upcoming Concerts, About, Press, Contact, Footer
 - `sitarist.html` — Raga Dictionary, Solo Classical, Basavaraj Brothers, Ateetam
-- `composer.html` — Projects (Jay Rang Rang), Gallery (40+ photos with filters)
+- `composer.html` — About AME, Projects (5 projects with videos), Gallery (40+ photos with filters)
 - `guru.html` — Guru & Lineage, SRK Academy (DVDs + student videos), Testimonials (placeholder)
 - `css/style.css` — source styles; `css/style.min.css` — minified (served to users)
 - `js/main.js` — source JS; `js/main.min.js` — minified (served to users)
@@ -334,7 +353,7 @@ All source materials are in Google Drive:
 - Main nav: Home | Sitarist | Composer | Guru | Contact
 - Sub-pages have a **secondary sub-navigation bar** (fixed below main nav) for section-level navigation
   - Sitarist: Raga Dictionary | Classical | Basavaraj Brothers | Ateetam
-  - Composer: Projects | Gallery
+  - Composer: About | Projects | Gallery
   - Guru: Guru & Lineage | The Academy | Testimonials
 - Sub-pages use `<body class="has-sub-nav">` for CSS offset
 - Sub-nav scroll highlighting via IntersectionObserver in main.js
@@ -364,7 +383,7 @@ All source materials are in Google Drive:
 - Fonts: Playfair Display (headings), Lora (body) — loaded from Google Fonts
 - Decorative elements: Sanskrit ornaments, gold dividers, fade-in scroll animations
 - Gallery: filterable by category (All/Concerts/With Artists/International/Awards) with lightbox viewer
-- 21+ YouTube video embeds organized across sub-pages
+- 25+ YouTube video embeds organized across sub-pages
 - Page headers on sub-pages: 40vh height with emblem (SRK Academy SVG or Aruna logo)
 - Explore cards on homepage: cream bg with gold border, centered emblems
 - Concert button: gradient saffron-to-deep-red with pulse-glow animation
@@ -389,8 +408,14 @@ All source materials are in Google Drive:
 
 ### Composer (composer.html)
 1. Page Header with Aruna Music logo
-2. Projects — Jay Rang Rang (Kashi La Lumière), more to come
-3. Gallery — 40+ photos with category filters and lightbox
+2. About — Aruna Music Entertainment description (About, Vision, Practice)
+3. Projects — 5 projects ordered newest-first:
+   - Jai Jai Dattatreya (IOAA Austin collaboration, 1 video)
+   - Geeth Govind (Invis Multimedia, 2020–2023, no videos)
+   - Heroes' Might — Veershakti (Une Production Florent, Sep 2021, 1 video)
+   - Jay Rang Rang — Kashi La Lumière (Une Production Florent, Mar 2021, 2 videos)
+   - Essence of Life & The Art of Meditation (Dega Arts, 2011, 1 video)
+4. Gallery — 40+ photos with category filters and lightbox
 
 ### Guru (guru.html)
 1. Page Header with SRK Academy SVG emblem
