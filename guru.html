@@ -66,6 +66,7 @@
       <a href="#guru">Guru &amp; Lineage</a>
       <a href="#academy">The Academy</a>
       <a href="#testimonials">Testimonials</a>
+      <a href="#portal" id="portal-nav-link" style="display: none;">Portal</a>
     </div>
   </div>
 
@@ -76,6 +77,7 @@
     <div class="hero-content">
       <img src="assets/images/srk-academy-logo.svg" alt="SRK Academy of Music" class="page-header-emblem">
       <p class="hero-sub">Preserving the Guru-Shishya Parampara</p>
+      <a href="#portal" id="portal-login-btn" class="btn btn-outline portal-login-btn">Student Portal</a>
     </div>
   </section>
 
@@ -213,6 +215,222 @@
     </div>
   </section>
 
+  <!-- Student Portal -->
+  <section id="portal" style="display: none;">
+    <div class="container">
+      <h2 class="section-title">SRK Academy Portal</h2>
+      <span class="ornament">&#10045; &#10045; &#10045;</span>
+      <div class="portal-user-bar">
+        <span id="portal-user-name"></span>
+        <button id="portal-logout" class="btn btn-outline portal-logout-btn" style="display: none;">Logout</button>
+      </div>
+
+      <!-- Teacher View -->
+      <div id="teacher-view" style="display: none;">
+        <div class="portal-tabs">
+          <button class="portal-tab active" data-tab="calendar">Calendar</button>
+          <button class="portal-tab" data-tab="students">Students</button>
+          <button class="portal-tab" data-tab="recurring">Recurring Slots</button>
+        </div>
+        <div class="portal-content">
+          <div id="tab-calendar" class="tab-pane">
+            <div class="calendar-layout">
+              <div class="calendar-month">
+                <div class="calendar-nav">
+                  <button class="cal-nav-btn" id="cal-prev">&lsaquo;</button>
+                  <span id="cal-month-label"></span>
+                  <button class="cal-nav-btn" id="cal-next">&rsaquo;</button>
+                  <button class="portal-btn-sm" id="cal-today">Today</button>
+                </div>
+                <div class="calendar-grid" id="cal-grid"></div>
+              </div>
+              <div class="calendar-day">
+                <h3 id="cal-day-label">Select a day</h3>
+                <div id="cal-day-classes"></div>
+                <button class="btn btn-primary" id="schedule-class-btn" style="margin-top: 16px;">+ Schedule Class</button>
+              </div>
+            </div>
+          </div>
+          <div id="tab-students" class="tab-pane" style="display: none;">
+            <div class="portal-section-header">
+              <h3>Students</h3>
+              <button class="btn btn-primary" id="add-student-btn">+ Add Student</button>
+            </div>
+            <div id="students-list"></div>
+          </div>
+          <div id="tab-recurring" class="tab-pane" style="display: none;">
+            <div class="portal-section-header">
+              <h3>Recurring Slots</h3>
+              <button class="btn btn-primary" id="add-recurring-btn">+ Add Recurring Slot</button>
+            </div>
+            <div id="recurring-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student View -->
+      <div id="student-view" style="display: none;">
+        <div id="student-classes"></div>
+      </div>
+
+      <!-- No Role View -->
+      <div id="no-role-view" style="display: none;">
+        <div class="portal-placeholder">
+          <h3>Access Pending</h3>
+          <p>Your account is not yet linked to a student profile. Please contact Guruji to complete your registration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Class Modal -->
+  <div class="portal-modal-overlay" id="class-modal" style="display: none;">
+    <div class="portal-modal">
+      <button class="portal-modal-close" id="class-modal-close">&times;</button>
+      <h3 id="class-modal-title">Schedule Class</h3>
+      <form id="class-form" class="portal-form">
+        <div class="portal-form-group">
+          <select name="studentId" required>
+            <option value="">Select student&hellip;</option>
+          </select>
+        </div>
+        <div class="portal-form-row">
+          <div class="portal-form-group">
+            <label class="portal-label">Date</label>
+            <input type="date" name="date" required>
+          </div>
+          <div class="portal-form-group">
+            <label class="portal-label">Time</label>
+            <input type="time" name="time" required>
+          </div>
+        </div>
+        <div class="portal-form-group">
+          <select name="mode" required>
+            <option value="online">Online</option>
+            <option value="in-person">In-person</option>
+          </select>
+        </div>
+        <div class="portal-form-group">
+          <textarea name="notes" placeholder="Notes (optional)" rows="2"></textarea>
+        </div>
+        <div id="class-error" class="portal-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Recurring Slot Modal -->
+  <div class="portal-modal-overlay" id="recurring-modal" style="display: none;">
+    <div class="portal-modal">
+      <button class="portal-modal-close" id="recurring-modal-close">&times;</button>
+      <h3>Add Recurring Slot</h3>
+      <form id="recurring-form" class="portal-form">
+        <div class="portal-form-group">
+          <select name="studentId" required>
+            <option value="">Select student&hellip;</option>
+          </select>
+        </div>
+        <div class="portal-form-row">
+          <div class="portal-form-group">
+            <select name="dayOfWeek" required>
+              <option value="">Day&hellip;</option>
+              <option value="0">Sunday</option>
+              <option value="1">Monday</option>
+              <option value="2">Tuesday</option>
+              <option value="3">Wednesday</option>
+              <option value="4">Thursday</option>
+              <option value="5">Friday</option>
+              <option value="6">Saturday</option>
+            </select>
+          </div>
+          <div class="portal-form-group">
+            <label class="portal-label">Time</label>
+            <input type="time" name="time" required>
+          </div>
+        </div>
+        <div class="portal-form-group">
+          <select name="mode" required>
+            <option value="online">Online</option>
+            <option value="in-person">In-person</option>
+          </select>
+        </div>
+        <div id="recurring-error" class="portal-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Add Recurring Slot</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Student Modal -->
+  <div class="portal-modal-overlay" id="student-modal" style="display: none;">
+    <div class="portal-modal portal-modal-wide">
+      <button class="portal-modal-close" id="student-modal-close">&times;</button>
+      <h3 id="student-modal-title">Add Student</h3>
+      <form id="student-form" class="portal-form">
+        <div class="portal-form-group">
+          <input type="text" name="name" placeholder="Full name" required>
+        </div>
+        <div class="portal-form-group">
+          <input type="email" name="email" placeholder="Email address (for login)" required>
+        </div>
+        <div class="portal-form-group">
+          <input type="password" name="password" placeholder="Password (min 6 characters)" minlength="6">
+        </div>
+        <div class="portal-form-group">
+          <input type="tel" name="whatsapp" placeholder="WhatsApp number (e.g., 919876543210)" required>
+        </div>
+        <div class="portal-form-row">
+          <div class="portal-form-group">
+            <select name="classType" required>
+              <option value="">Class type&hellip;</option>
+              <option value="recurring">Recurring (fixed weekly)</option>
+              <option value="flexible">Flexible (week by week)</option>
+            </select>
+          </div>
+          <div class="portal-form-group">
+            <select name="level" required>
+              <option value="">Level&hellip;</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+        <div class="portal-form-row">
+          <div class="portal-form-group">
+            <label class="portal-label">Start date</label>
+            <input type="date" name="startDate">
+          </div>
+          <div class="portal-form-group">
+            <label class="portal-checkbox">
+              <input type="checkbox" name="instrumentOwned">
+              <span>Owns a sitar</span>
+            </label>
+          </div>
+        </div>
+        <div class="portal-form-group">
+          <textarea name="notes" placeholder="Notes (optional)" rows="3"></textarea>
+        </div>
+        <div id="student-error" class="portal-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Add Student</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="portal-modal-overlay" id="login-modal" style="display: none;">
+    <div class="portal-modal">
+      <button class="portal-modal-close" id="login-modal-close">&times;</button>
+      <h3>Student Portal</h3>
+      <p class="portal-modal-subtitle">Login to access your class schedule</p>
+      <form id="login-form" class="portal-form">
+        <input type="email" placeholder="Email address" required>
+        <input type="password" placeholder="Password" required>
+        <div id="login-error" class="portal-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -260,5 +478,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script type="module" src="js/portal.js"></script>
 </body>
 </html>

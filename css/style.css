@@ -1460,6 +1460,625 @@ section:nth-child(even) {
   grid-template-columns: 1fr;
 }
 
+/* === PORTAL === */
+.portal-login-btn {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.portal-user-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.portal-user-bar span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+.portal-logout-btn {
+  padding: 6px 20px;
+  font-size: 0.82rem;
+}
+
+.portal-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--border-gold);
+  padding-bottom: 0;
+}
+
+.portal-tab {
+  padding: 10px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-family: 'Lora', serif;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.portal-tab:hover {
+  color: var(--maroon);
+}
+
+.portal-tab.active {
+  color: var(--maroon);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
+}
+
+.portal-content {
+  min-height: 300px;
+}
+
+.portal-placeholder {
+  text-align: center;
+  padding: 60px 20px;
+  border: 2px dashed var(--border-gold);
+  border-radius: 8px;
+}
+
+.portal-placeholder h3 {
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.portal-placeholder p {
+  color: var(--text-light);
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+.portal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-modal {
+  background: var(--warm-white);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 40px;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.portal-modal h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.portal-modal-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.portal-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.portal-modal-close:hover {
+  color: var(--maroon);
+}
+
+.portal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.portal-form input {
+  padding: 12px 16px;
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.3s;
+}
+
+.portal-form input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.portal-error {
+  color: var(--deep-red);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 8px;
+  background: rgba(139, 26, 43, 0.08);
+  border-radius: 4px;
+}
+
+/* Calendar Layout */
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.calendar-nav span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--maroon);
+  font-weight: 700;
+  flex: 1;
+  text-align: center;
+}
+
+.cal-nav-btn {
+  background: none;
+  border: 1px solid var(--border-gold);
+  border-radius: 3px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--maroon);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-nav-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-hdr {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-light);
+  padding: 4px 0;
+  letter-spacing: 1px;
+}
+
+.cal-cell {
+  text-align: center;
+  padding: 6px 2px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.2s;
+  min-height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-cell:hover {
+  background: rgba(201, 168, 76, 0.15);
+}
+
+.cal-cell.cal-empty {
+  cursor: default;
+}
+
+.cal-cell.cal-empty:hover {
+  background: none;
+}
+
+.cal-cell.cal-today {
+  font-weight: 700;
+  color: var(--maroon);
+  background: rgba(107, 15, 26, 0.08);
+}
+
+.cal-cell.cal-selected {
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.cal-cell.cal-selected:hover {
+  background: var(--gold);
+}
+
+.cal-dot {
+  display: block;
+  font-size: 0.55rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.cal-cell.cal-selected .cal-dot {
+  color: var(--maroon);
+}
+
+.calendar-day h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.cal-empty-day {
+  color: var(--text-light);
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+.cal-class-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #fff;
+  transition: box-shadow 0.2s;
+}
+
+.cal-class-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.cal-class-item.cal-class-done {
+  opacity: 0.6;
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.cal-class-item.cal-class-cancelled {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.cal-class-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  color: var(--maroon);
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.cal-class-info {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.cal-class-info strong {
+  color: var(--dark);
+}
+
+.cal-class-mode {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 1px 8px;
+  background: rgba(107, 15, 26, 0.08);
+  color: var(--maroon);
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.cal-class-notes {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.cal-class-status {
+  font-size: 0.75rem;
+  color: var(--deep-red);
+  font-weight: 600;
+}
+
+.cal-class-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Student View */
+.portal-list-heading {
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.student-class-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #fff;
+}
+
+.student-class-item.student-class-past {
+  opacity: 0.6;
+}
+
+.student-class-date {
+  font-weight: 600;
+  color: var(--maroon);
+  font-size: 0.9rem;
+  min-width: 100px;
+}
+
+.student-class-time {
+  font-size: 0.9rem;
+  min-width: 70px;
+}
+
+.student-class-done {
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-left: auto;
+}
+
+.portal-modal-wide {
+  max-width: 480px;
+}
+
+.portal-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.portal-section-header h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--maroon);
+  font-size: 1.2rem;
+}
+
+.portal-table-wrap {
+  overflow-x: auto;
+}
+
+.portal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.portal-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: rgba(107, 15, 26, 0.06);
+  color: var(--maroon);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-gold);
+}
+
+.portal-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-gold);
+  vertical-align: middle;
+}
+
+.portal-table tbody tr:hover {
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.portal-table-sub {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+.portal-table-actions {
+  white-space: nowrap;
+  display: flex;
+  gap: 6px;
+}
+
+.portal-btn-sm {
+  padding: 4px 12px;
+  border: 1px solid var(--border-gold);
+  border-radius: 3px;
+  background: none;
+  font-family: 'Lora', serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--text-light);
+}
+
+.portal-btn-edit:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.portal-btn-delete:hover {
+  background: var(--deep-red);
+  color: #fff;
+  border-color: var(--deep-red);
+}
+
+.portal-form-group {
+  margin-bottom: 0;
+}
+
+.portal-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.portal-form select,
+.portal-form textarea {
+  padding: 12px 16px;
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.portal-form select:focus,
+.portal-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.portal-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.portal-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.portal-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  color: var(--text);
+  cursor: pointer;
+  padding-top: 20px;
+}
+
+.portal-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--maroon);
+}
+
+@media (max-width: 768px) {
+  .portal-tabs {
+    gap: 0;
+  }
+
+  .portal-tab {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  .portal-modal {
+    margin: 16px;
+    padding: 32px 24px;
+  }
+
+  .portal-modal-wide {
+    margin: 16px;
+  }
+
+  .portal-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .portal-table {
+    font-size: 0.82rem;
+  }
+
+  .portal-table th,
+  .portal-table td {
+    padding: 8px;
+  }
+
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-month {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .cal-class-item {
+    flex-wrap: wrap;
+  }
+
+  .cal-class-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 4px;
+  }
+
+  .student-class-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
 /* === UPCOMING CONCERTS === */
 .concerts-grid {
   display: grid;
