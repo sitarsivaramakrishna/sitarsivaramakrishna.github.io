@@ -33,6 +33,7 @@ let editingStudentId = null;
 let editingClassId = null;
 let selectedDate = null;
 let viewMonth = new Date();
+let studentSearchTerm = '';
 let studentsUnsubscribe = null;
 let classesUnsubscribe = null;
 let recurringUnsubscribe = null;
@@ -244,19 +245,42 @@ function renderStudentList() {
     return;
   }
 
-  let html = '<div class="portal-table-wrap"><table class="portal-table">' +
-    '<thead><tr><th>Name</th><th>Level</th><th>Type</th><th>WhatsApp</th><th>Actions</th></tr></thead><tbody>';
-  for (const s of studentsCache) {
-    html += '<tr><td><strong>' + esc(s.name) + '</strong><br><span class="portal-table-sub">' + esc(s.email || '') + '</span></td>' +
-      '<td>' + capitalize(s.level) + '</td><td>' + (s.classType === 'recurring' ? 'Recurring' : 'Flexible') + '</td>' +
-      '<td>' + esc(s.whatsapp || '—') + '</td>' +
-      '<td class="portal-table-actions">' +
-      '<button class="portal-btn-sm portal-btn-edit" data-action="edit-student" data-id="' + s.id + '">Edit</button>' +
-      '<button class="portal-btn-sm portal-btn-delete" data-action="delete-student" data-id="' + s.id + '">Delete</button>' +
-      '</td></tr>';
+  const term = studentSearchTerm.toLowerCase();
+  const filtered = term
+    ? studentsCache.filter(s => s.name.toLowerCase().includes(term) || (s.email || '').toLowerCase().includes(term))
+    : studentsCache;
+
+  let html = '<input type="text" class="portal-search" id="student-search" placeholder="Search students by name…" value="' + esc(studentSearchTerm) + '">';
+
+  if (filtered.length === 0) {
+    html += '<p class="cal-empty-day">No students matching "' + esc(studentSearchTerm) + '"</p>';
+  } else {
+    html += '<div class="portal-table-wrap"><table class="portal-table">' +
+      '<thead><tr><th>Name</th><th>Level</th><th>Type</th><th>WhatsApp</th><th>Actions</th></tr></thead><tbody>';
+    for (const s of filtered) {
+      html += '<tr><td><strong>' + esc(s.name) + '</strong><br><span class="portal-table-sub">' + esc(s.email || '') + '</span></td>' +
+        '<td>' + capitalize(s.level) + '</td><td>' + (s.classType === 'recurring' ? 'Recurring' : 'Flexible') + '</td>' +
+        '<td>' + esc(s.whatsapp || '—') + '</td>' +
+        '<td class="portal-table-actions">' +
+        '<button class="portal-btn-sm portal-btn-edit" data-action="edit-student" data-id="' + s.id + '">Edit</button>' +
+        '<button class="portal-btn-sm portal-btn-delete" data-action="delete-student" data-id="' + s.id + '">Delete</button>' +
+        '</td></tr>';
+    }
+    html += '</tbody></table></div>';
   }
-  html += '</tbody></table></div>';
+
+  html += '<p class="portal-table-count">' + studentsCache.length + ' student' + (studentsCache.length !== 1 ? 's' : '') + ' total</p>';
   container.innerHTML = html;
+
+  const searchInput = $('#student-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      studentSearchTerm = e.target.value;
+      renderStudentList();
+      const el = $('#student-search');
+      if (el) { el.focus(); el.selectionStart = el.selectionEnd = el.value.length; }
+    });
+  }
 
   container.querySelectorAll('[data-action="edit-student"]').forEach(b => b.addEventListener('click', () => openEditStudentModal(b.dataset.id)));
   container.querySelectorAll('[data-action="delete-student"]').forEach(b => b.addEventListener('click', () => handleDeleteStudent(b.dataset.id)));
@@ -391,6 +415,7 @@ function initCalendar() {
     renderCalendar();
   });
   $('#schedule-class-btn')?.addEventListener('click', () => openScheduleClassModal());
+  renderCalendar();
 }
 
 function navigateMonth(delta) {

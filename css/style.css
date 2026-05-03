@@ -1877,6 +1877,31 @@ section:nth-child(even) {
   margin-left: auto;
 }
 
+.portal-search {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  font-family: 'Lora', serif;
+  font-size: 0.92rem;
+  background: #fff;
+  margin-bottom: 16px;
+  transition: border-color 0.3s;
+}
+
+.portal-search:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.portal-table-count {
+  text-align: right;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 8px;
+  font-style: italic;
+}
+
 .portal-modal-wide {
   max-width: 480px;
 }
