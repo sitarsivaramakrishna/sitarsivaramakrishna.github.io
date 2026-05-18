@@ -554,7 +554,9 @@ function renderDayDetail() {
       '<div class="cal-class-actions">';
 
     if (!cancelled) {
+      const gcalLink = makeGcalLink(c);
       html += '<a href="' + waLink + '" target="_blank" rel="noopener" class="portal-btn-sm" title="WhatsApp reminder">📱</a>';
+      html += '<a href="' + gcalLink + '" target="_blank" rel="noopener" class="portal-btn-sm portal-btn-gcal" title="Add to Google Calendar">📅</a>';
       if (!done) html += '<button class="portal-btn-sm portal-btn-edit" data-action="complete" data-id="' + c.id + '" title="Mark done">✓</button>';
       html += '<button class="portal-btn-sm portal-btn-edit" data-action="edit-class" data-id="' + c.id + '" title="Edit">✎</button>' +
         '<button class="portal-btn-sm portal-btn-delete" data-action="cancel-class" data-id="' + c.id + '" title="Cancel">✕</button>';
@@ -635,6 +637,7 @@ function renderAgenda() {
           '</div>' +
           '<div class="cal-class-actions">' +
             '<a href="' + waLink + '" target="_blank" rel="noopener" class="portal-btn-sm" title="WhatsApp">📱</a>' +
+            '<a href="' + makeGcalLink(c) + '" target="_blank" rel="noopener" class="portal-btn-sm portal-btn-gcal" title="Add to Google Calendar">📅</a>' +
             (!done ? '<button class="portal-btn-sm portal-btn-edit" data-action="complete" data-id="' + c.id + '" title="Done">✓</button>' : '') +
           '</div></div>';
         found++;
@@ -863,6 +866,25 @@ function makeWaLink(c) {
     d.getDate() + ' ' + month + ' at ' + fmtTime(c.time) +
     ' (' + (c.mode === 'online' ? 'Online' : 'In-person') + '). — SRK Academy of Music';
   return 'https://wa.me/' + c.studentWhatsapp.replace(/[^0-9]/g, '') + '?text=' + encodeURIComponent(msg);
+}
+
+function makeGcalLink(c) {
+  const pad = (n) => String(n).padStart(2, '0');
+  const [y, mo, dy] = c.date.split('-');
+  const [hh, mm] = c.time.split(':');
+  const dur = c.duration || 60;
+  const start = new Date(+y, +mo - 1, +dy, +hh, +mm);
+  const end = new Date(start.getTime() + dur * 60000);
+  const fmt = (dt) => dt.getFullYear() + pad(dt.getMonth() + 1) + pad(dt.getDate()) +
+    'T' + pad(dt.getHours()) + pad(dt.getMinutes()) + '00';
+  const params = new URLSearchParams({
+    text: 'Sitar Class – ' + c.studentName,
+    dates: fmt(start) + '/' + fmt(end),
+    details: 'Mode: ' + (c.mode === 'online' ? 'Online' : 'In-person') + (c.notes ? '\nNotes: ' + c.notes : ''),
+    location: c.mode === 'online' ? 'Online' : 'Shabhari Nagar, Bangalore',
+    ctz: 'Asia/Kolkata'
+  });
+  return 'https://calendar.google.com/calendar/r/eventedit?' + params.toString();
 }
 
 // === RECURRING SLOTS ===
