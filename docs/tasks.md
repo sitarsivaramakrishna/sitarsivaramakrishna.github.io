@@ -32,12 +32,15 @@
 - [x] Explore section on homepage with 3 cards linking to sub-pages
 - [x] Page-specific footers (personal vs Aruna Music social links)
 
-### 1.05 Random Hero Background
-- [x] 7 concert photos rotate randomly on every page load (all 4 pages)
-- [x] Processed 6 new photos from ~/Downloads/newpics/ (cropped, converted to WebP)
-- [x] Images: Hyderabad Palace, Drive East NY, Basel, Stanford, Bharat Sangeet Utsav, Shalle Bangalore, Jugalbandhi
-- [x] Background set via JS IIFE; CSS fallback color (#1a1a1a)
-- [x] All images stored in assets/images/heroes/ (~512KB total)
+### 1.05 Split-Layout Hero (redesigned May 2026)
+- [x] Split-layout hero: solo portrait photo left, text right, cream background
+- [x] 8 new solo portrait photos from ~/Downloads/NEW PHOTOS/Solo pics/ (converted to WebP via PIL)
+- [x] Images: pink-smoke, tan-seated, red-moody, red-closeup, white-playing, forest, temple, standing
+- [x] Homepage: 100vh, 7 photos rotate (excludes standing); Sub-pages: 70vh, 6 landscape photos
+- [x] `object-fit: contain` — full person visible, no head cutoffs
+- [x] Gradient fade on photo edge via `::after` pseudo-element
+- [x] Old 7 concert hero photos moved to Moments page gallery as Concert Pictures
+- [x] All images stored in assets/images/heroes/ (~1.4MB total)
 
 ### 1.06 Wikipedia & Documentation
 - [x] Website summary (website-summary.md)
@@ -46,13 +49,14 @@
 - [x] .nojekyll marker file
 
 ### 1.1 Home / Landing Page
-- [x] Hero section with randomly rotating concert photos and Sanskrit invocation
+- [x] Split-layout hero with solo portraits and Sanskrit invocation
 - [x] Brief introduction (tagline: Sitarist, Composer, Guru)
-- [x] Navigation bar (responsive hamburger menu on mobile)
-- [x] CTA buttons (Listen, Upcoming Concerts with pulse-glow animation)
+- [x] Navigation bar: Home | Sitarist | Composer | Guru | Moments | Contact
+- [x] CTA button (Listen)
 - [x] Scroll indicator
-- [x] Upcoming Concerts section with concert brochure images
-- [x] Footer with social links, streaming platform icons, copyright
+- [x] Explore section with 3 cards (Sitarist photo, Aruna logo, SRK Academy logo)
+- [x] Removed Upcoming Concerts section (May 2026)
+- [x] Compressed footer (reduced height)
 
 ### 1.2 About / Biography Section
 - [x] Detailed biography narrative
@@ -72,12 +76,13 @@
 
 ### 1.4 Music / Videos Section (now on sitarist.html)
 - [x] 21+ YouTube video embeds total across all sections
-- [x] Categorized: Solo Classical, Carnatic on Sitar, Fusion & Covers, Devotional
+- [x] Categorized: Solo Classical (Hindustani 3 videos, Carnatic, Fusion, Devotional)
 - [x] Responsive video grid layout
 - [x] Video titles and brief descriptions
-- [x] Streaming platform links section (Spotify, Apple Music, Amazon, JioSaavn, YouTube)
-- [x] Raga Dictionary as top-level section with compact grid layout
-- [ ] Album grid/list with cover art, year, label
+- [x] Streaming platform links in hero content area (Spotify, Apple Music, Amazon, JioSaavn, YouTube)
+- [x] Raga Dictionary section (summary line removed)
+- [x] Albums section with Carnatic on Sitar + Healing Ragas (horizontal layout)
+- [x] Section order: Albums → Raga Dictionary → Classical → Brothers → Ateetam
 - [ ] Embedded Spotify player widgets for select albums
 - [ ] Audio samples from WAV files
 
@@ -100,20 +105,20 @@
 
 ### 1.7 Ateetam Section
 - [x] About the band — meaning of "Ateetam" (THE BEYOND, Sanskrit)
-- [x] 4 member cards (Sivaramakrishna Rao, Shakthidhar, Venky DC, Varun Pradeep)
+- [x] Member cards removed (May 2026) — band description only
 - [x] Albums listed in description
-- [x] 2 embedded videos (Ateetam Live, Shivanjali)
-- [ ] Links to individual member websites (shakthidhar.com, venkydc.com)
-- [ ] Member photos on cards
+- [x] 3 embedded videos (Ateetam Live, Shivanjali, Sitar Fusion Concert)
 
 ### 1.8 SRK Academy Section (now on guru.html)
-- [x] About the academy / teaching practice
-- [x] What is taught: Hindustani & Carnatic Classical on Sitar
-- [x] Online classes mentioned
-- [x] Instructional DVDs: "Learn To Play Sitar" Vol 1 & 2
-- [x] 2 student performance video embeds (Shakthi Sahitha Ganapathim + Sitar Recital)
-- [x] SRK Academy SVG emblem (with embedded artist photo)
-- [ ] Student testimonials
+- [x] About the academy / personalized instruction
+- [x] Course Options: Beginner (12 classes/quarter, 1hr) and Advanced/Professional (13/11/9 classes/quarter)
+- [x] Terms & Conditions (8 bullet points)
+- [x] Online classes (Bangalore, Chennai, worldwide) mentioned
+- [x] "Sri Gurubhyo Namaha" subtitle on Guru & Lineage section
+- [x] Student Performances — new section with 2 videos (horizontal layout)
+- [x] Learn to Play Sitar — new section with 2 DVD videos (horizontal layout, centered)
+- [x] SRK Academy logo — Elegant Vertical SVG (maroon sitar on cream, gold borders and text)
+- [x] Student testimonials — 4 review images
 - [ ] Sitar & accessories info
 
 ### 1.85 Composer Projects (composer.html)
@@ -264,7 +269,7 @@
 - [ ] Mailing list signup
 - [ ] Multi-language support (English + Hindi or Telugu)
 - [ ] Online store for DVDs, albums, merchandise
-- [ ] Student portal for SRK Academy
+- [x] Student portal for SRK Academy (Firebase-based, completed)
 - [ ] Interactive sitar learning resources
 - [ ] Audio visualizer for embedded music
 - [ ] Dark/light theme toggle
@@ -273,6 +278,6 @@
 - [ ] Interactive map of international performances
 - [ ] Collaboration request form for other musicians
 - [ ] Integration with concert booking platforms
-- [ ] Discography page with album cover art grid
+- [x] Albums section on Sitarist page (2 album videos)
 - [ ] Embed Spotify/Apple Music player widgets
 - [ ] Use remaining WhatsApp photos from Europe Tour 2024

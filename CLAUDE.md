@@ -66,9 +66,7 @@ Built by his student Bharadwaj. Hosted on GitHub Pages.
 - Ustad Shahid Parvez
 - Dr. M. Balamuralikrishna
 - Music Director Devi Sri Prasad
-- Shareeth (Music Director) — "Essence of Life" album
 - Ustad Rashid Khan
-- Sivamani (CCA Festival Chennai)
 - Bombay Jayashree
 - Selvaganesh Vinayakaram
 - Malgudi Shubha (Sacred Mantras recording)
@@ -320,7 +318,7 @@ All source materials are in Google Drive:
 
 ## Technical Decisions
 - Plain HTML + CSS + vanilla JavaScript (no frameworks, no build tools)
-- **Multi-page site** with 4 pages: Homepage + 3 sub-pages (Sitarist, Composer, Guru)
+- **Multi-page site** with 5 pages: Homepage + 4 sub-pages (Sitarist, Composer, Guru, Moments)
 - Hosted on GitHub Pages (deploys automatically from main branch)
 - GitHub org: sitarsivaramakrishna (https://github.com/sitarsivaramakrishna)
 - Repo: sitarsivaramakrishna.github.io
@@ -328,10 +326,11 @@ All source materials are in Google Drive:
 - CSS minification via Python `csscompressor`; JS minification via Python `rjsmin`
 
 ## Site Architecture
-- `index.html` — Homepage: Hero, Explore cards, Upcoming Concerts, About, Press, Contact, Footer
-- `sitarist.html` — Raga Dictionary, Solo Classical, Basavaraj Brothers, Ateetam
+- `index.html` — Homepage: Hero, Explore cards, About, Press, Contact, Footer
+- `sitarist.html` — Streaming links (in hero), Albums, Raga Dictionary, Solo Classical, Basavaraj Brothers, Ateetam
 - `composer.html` — About AME, Projects (5 projects with videos), Gallery (40+ photos with filters)
-- `guru.html` — Guru & Lineage, SRK Academy (DVDs + student videos), Testimonials (placeholder), Student Portal
+- `guru.html` — Guru & Lineage, The Academy, Student Performances, Learn to Play Sitar, Testimonials, Student Portal
+- `moments.html` — Photo gallery: With Artists, With Students, Concert Pictures, International, Awards
 - `js/portal.js` — source portal JS; `js/portal.min.js` — minified (served to users). ES module with Firebase CDN imports
 - `css/style.css` — source styles; `css/style.min.css` — minified (served to users)
 - `js/main.js` — source JS; `js/main.min.js` — minified (served to users)
@@ -340,10 +339,11 @@ All source materials are in Google Drive:
 - `assets/images/guru/` — 3 photos of Ustad Ahmed Hussain Khan
 - `assets/images/awards/` — 1 photo (Madhura Murali Puraskar)
 - `assets/images/press/` — 16 files (press clippings, reviews)
-- `assets/images/heroes/` — 7 hero background images (WebP, ~512KB total) for random rotation
+- `assets/images/heroes/` — 8 solo portrait hero images (WebP, ~1.4MB total) for split-layout hero rotation
 - `assets/images/concerts/` — Concert brochure images
 - `assets/images/aruna-logo.png` — Aruna Music Entertainment logo (transparent background)
-- `assets/images/srk-academy-logo.svg` — SRK Academy emblem (SVG with embedded photo via `<image>` tag)
+- `assets/images/srk-academy-logo.svg` — SRK Academy emblem (old, SVG with embedded photo via `<image>` tag)
+- `assets/images/srk-academy-logo-new.svg` — SRK Academy logo (current, Elegant Vertical design with maroon sitar on cream, gold borders and text)
 - `_config.yml` — Jekyll config excluding .md files and docs/ from build
 - `.nojekyll` — Marker file for GitHub Pages
 - `docs/website-summary.md` — Comprehensive summary of the entire website
@@ -353,11 +353,12 @@ All source materials are in Google Drive:
 - All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
 
 ## Navigation
-- Main nav: Home | Sitarist | Composer | Guru | Contact
+- Main nav: Home | Sitarist | Composer | Guru | Moments | Contact
 - Sub-pages have a **secondary sub-navigation bar** (fixed below main nav) for section-level navigation
-  - Sitarist: Raga Dictionary | Classical | Basavaraj Brothers | Ateetam
+  - Sitarist: Albums | Raga Dictionary | Classical | Basavaraj Brothers | Ateetam
   - Composer: About | Projects | Gallery
-  - Guru: Guru & Lineage | The Academy | Testimonials | Portal (visible only when logged in)
+  - Guru: Guru & Lineage | The Academy | Student Performances | Learn to Play Sitar | Testimonials | Portal (visible only when logged in)
+  - Moments: With Artists | With Students | Concert Pictures | International | Awards
 - Sub-pages use `<body class="has-sub-nav">` for CSS offset
 - Sub-nav scroll highlighting via IntersectionObserver in main.js
 - CSS `scroll-margin-top: 110px` for proper anchor scrolling with two fixed navbars
@@ -374,14 +375,19 @@ All source materials are in Google Drive:
 - CSS minification: Python `csscompressor`; JS minification: Python `rjsmin`
 - GitHub Pages serves gzip-compressed responses (e.g., 5.5K JS → 1.7K on the wire)
 - Native lazy loading on all images and iframes
-- Hero background uses WebP; 7 images rotate randomly (~512KB total)
+- Hero images: 8 solo portrait WebP files (~1.4MB total), split-layout with `object-fit: contain`
 
-## Random Hero Background
-- 7 concert photos in `assets/images/heroes/` rotate randomly on each page load
-- Images: Hyderabad Palace (original), Drive East NY, Basel Concert, Stanford, Bharat Sangeet Utsav, Shalle Bangalore, Jugalbandhi Concert
-- Background set via JS (IIFE in main.js), CSS `.hero-bg` has `#1a1a1a` fallback
-- All pages (homepage + 3 sub-pages) share the same `.hero-bg` class and random rotation
-- Source photos from `/Users/bharadwaj/Downloads/newpics/` — cropped and converted to WebP via PIL
+## Split-Layout Hero
+- 8 solo portrait photos in `assets/images/heroes/` rotate randomly
+- Images: pink-smoke, tan-seated, red-moody, red-closeup, white-playing, forest, temple (all pages), standing (homepage only — excluded from sub-pages)
+- Split layout: photo on LEFT (45% homepage, 40% sub-pages), text on RIGHT, cream background
+- `object-fit: contain` so full person is visible (no head cutoffs)
+- Homepage hero: 100vh, 7 photos rotate (homeHeroes array in main.js)
+- Sub-page hero: 70vh, 6 landscape photos rotate (pageHeroes array in main.js)
+- Gradient fade on photo edge via `::after` pseudo-element
+- Photo set via JS: swaps `<img id="hero-img">` src attribute
+- Source photos from `/Users/bharadwaj/Downloads/NEW PHOTOS /Solo pics/` — converted to WebP via PIL
+- Old 7 concert hero photos moved to Moments page gallery as concert pictures
 
 ## Design Theme
 - Color palette: deep maroon (#6B0F1A), gold (#C9A84C), cream (#FDF6E3), warm white (#FFFDF7), teal (#1A5C5A)
@@ -389,30 +395,30 @@ All source materials are in Google Drive:
 - Decorative elements: Sanskrit ornaments, gold dividers, fade-in scroll animations
 - Gallery: filterable by category (All/Concerts/With Artists/International/Awards) with lightbox viewer
 - 25+ YouTube video embeds organized across sub-pages
-- Page headers on sub-pages: 40vh height with emblem (SRK Academy SVG or Aruna logo)
-- Explore cards on homepage: cream bg with gold border, centered emblems
-- Concert button: gradient saffron-to-deep-red with pulse-glow animation
+- Page headers on sub-pages: 70vh split-layout with photo left, emblem + text right
+- Explore cards on homepage: cream bg with gold border, centered emblems (SRK Academy logo, Aruna logo)
+- Sitarist hero: streaming links in hero content area instead of title
 
 ## Sections on the Website
 
 ### Homepage (index.html)
-1. Hero — full-screen with randomly rotating concert photo (7 images), "Listen" + "Upcoming Concerts" buttons
-2. Explore — 3 cards linking to Sitarist (photo bg), Composer (Aruna emblem), Guru (SRK emblem)
-3. Upcoming Concerts — concert brochure images in gold-border cards
-4. About — biography, 4 highlight cards (awards, albums, countries)
-5. Press & Reviews — The Hindu quote + 9 press clipping cards
-6. Contact — form (Google Forms backend, emails to sitarsiva@gmail.com), social links
-7. Footer — quick links, streaming links, Sanskrit closing
+1. Hero — split-layout with solo portrait photo left, "Listen" button + Sanskrit invocation right, cream bg
+2. Explore — 3 cards linking to Sitarist (photo bg), Composer (Aruna emblem), Guru (SRK Academy logo)
+3. About — biography, 4 highlight cards (awards, albums, countries)
+4. Press & Reviews — The Hindu quote + 9 press clipping cards
+5. Contact — form (Google Forms backend, emails to sitarsiva@gmail.com), social links
+6. Footer — quick links, streaming links, Sanskrit closing (compressed height)
 
 ### Sitarist (sitarist.html)
-1. Page Header
-2. Raga Dictionary — compact grid with streaming links
-3. Solo Sitar — Classical — Hindustani, Carnatic, Fusion, Devotional videos
-4. Basavaraj Brothers — duo description, 6 videos
-5. Ateetam — band description, member cards, 3 videos
+1. Page Header — split-layout hero with streaming platform links (Spotify, Apple Music, Amazon, JioSaavn, YouTube) in hero content
+2. Albums — Carnatic on Sitar + Healing Ragas videos (horizontal layout)
+3. Raga Dictionary — compact grid
+4. Solo Sitar — Classical — Hindustani (3 videos), Carnatic, Fusion, Devotional videos
+5. Basavaraj Brothers — duo description, 6 videos
+6. Ateetam — band description (no member cards), 3 videos
 
 ### Composer (composer.html)
-1. Page Header with Aruna Music logo
+1. Page Header with Aruna Music logo (split-layout)
 2. About — Aruna Music Entertainment description (About, Vision, Practice)
 3. Projects — 5 projects ordered newest-first:
    - Jai Jai Dattatreya (IOAA Austin collaboration, 1 video)
@@ -423,11 +429,21 @@ All source materials are in Google Drive:
 4. Gallery — 40+ photos with category filters and lightbox
 
 ### Guru (guru.html)
-1. Page Header with SRK Academy SVG emblem
-2. Guru & Lineage — tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
-3. The Academy — teaching info, DVDs, 2 student performance videos
-4. Testimonials — placeholder (coming soon)
-5. Student Portal — scheduling portal (hidden until login, see Portal section below)
+1. Page Header with SRK Academy logo (Elegant Vertical SVG, split-layout)
+2. Guru & Lineage — "Sri Gurubhyo Namaha" subtitle, tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
+3. The Academy — personalized instruction, Course Options (Beginner/Advanced), Terms & Conditions (single-column centered layout)
+4. Student Performances — 2 student videos displayed horizontally
+5. Learn to Play Sitar — 2 DVD videos displayed horizontally and centered
+6. Testimonials — 4 review images
+7. Student Portal — scheduling portal (hidden until login, see Portal section below)
+
+### Moments (moments.html)
+1. Page Header (split-layout)
+2. With Artists — photos with celebrated musicians
+3. With Students — 4 photos centered
+4. Concert Pictures — concert photos including 7 former hero images
+5. International — photos from international performances
+6. Awards — 2 award photos centered
 
 ## Development Notes
 - YouTube embeds do NOT work from file:// protocol — must use http/https
