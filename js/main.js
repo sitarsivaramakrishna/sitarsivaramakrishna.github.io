@@ -1,18 +1,26 @@
-/* === Random Hero Background === */
+/* === Random Hero Photo === */
 (function() {
-  var heroes = [
-    'assets/images/heroes/hero-hyderabad-palace.webp',
-    'assets/images/heroes/hero-drive-east-ny.webp',
-    'assets/images/heroes/hero-basel-concert.webp',
-    'assets/images/heroes/hero-stanford-sanjose.webp',
-    'assets/images/heroes/hero-bharat-sangeet-utsav.webp',
-    'assets/images/heroes/hero-shalle-bangalore.webp',
-    'assets/images/heroes/hero-jugalbandhi-concert.webp'
+  var homeHeroes = [
+    'assets/images/heroes/hero-pink-smoke.webp',
+    'assets/images/heroes/hero-tan-seated.webp',
+    'assets/images/heroes/hero-red-moody.webp',
+    'assets/images/heroes/hero-red-closeup.webp',
+    'assets/images/heroes/hero-white-playing.webp',
+    'assets/images/heroes/hero-forest.webp',
+    'assets/images/heroes/hero-temple.webp'
   ];
-  var bg = document.querySelector('.hero-bg');
-  if (bg) {
-    var img = heroes[Math.floor(Math.random() * heroes.length)];
-    bg.style.backgroundImage = 'url(' + img + ')';
+  var pageHeroes = [
+    'assets/images/heroes/hero-pink-smoke.webp',
+    'assets/images/heroes/hero-tan-seated.webp',
+    'assets/images/heroes/hero-red-moody.webp',
+    'assets/images/heroes/hero-red-closeup.webp',
+    'assets/images/heroes/hero-white-playing.webp',
+    'assets/images/heroes/hero-forest.webp'
+  ];
+  var img = document.getElementById('hero-img');
+  if (img) {
+    var list = document.querySelector('.hero') ? homeHeroes : pageHeroes;
+    img.src = list[Math.floor(Math.random() * list.length)];
   }
 })();
 

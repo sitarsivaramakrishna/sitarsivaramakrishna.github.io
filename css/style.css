@@ -245,79 +245,86 @@ section:nth-child(even) {
   scroll-margin-top: 110px;
 }
 
-/* === HERO === */
+/* === HERO (split layout: photo left, text right) === */
 .hero {
   position: relative;
   height: 100vh;
   min-height: 600px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   overflow: hidden;
   padding: 0;
+  background: var(--cream);
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: #1a1a1a center center / cover no-repeat;
-  filter: brightness(0.35);
+.hero-photo {
+  flex: 0 0 45%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-overlay {
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-photo::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(107, 15, 26, 0.4) 0%,
-    rgba(26, 26, 26, 0.6) 100%
-  );
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, var(--cream));
+  pointer-events: none;
 }
 
 .hero-content {
-  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px;
   z-index: 2;
-  color: #fff;
-  padding: 0 24px;
 }
 
 .hero-content .sanskrit {
   font-size: 1.1rem;
-  color: var(--light-gold);
+  color: var(--gold);
   letter-spacing: 4px;
   margin-bottom: 20px;
-  opacity: 0.9;
 }
 
 .hero-content h1 {
-  font-size: 3.5rem;
-  color: #fff;
+  font-size: 3.2rem;
+  color: var(--maroon);
   margin-bottom: 8px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
 .hero-content .hero-sub {
-  font-size: 1.3rem;
-  color: var(--light-gold);
+  font-size: 1.2rem;
+  color: var(--gold);
   font-style: italic;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   font-weight: 400;
 }
 
 .hero-content .hero-tagline {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.85);
-  max-width: 600px;
-  margin: 0 auto 40px;
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 500px;
   line-height: 1.8;
+  margin-bottom: 32px;
 }
 
 .hero-cta {
   display: inline-flex;
   gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .btn {
@@ -344,13 +351,13 @@ section:nth-child(even) {
 
 .btn-outline {
   background: transparent;
-  color: var(--light-gold);
-  border: 1px solid var(--light-gold);
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
 }
 
 .btn-outline:hover {
-  background: var(--light-gold);
-  color: var(--dark);
+  background: var(--maroon);
+  color: #fff;
 }
 
 .btn-concerts {
@@ -378,7 +385,7 @@ section:nth-child(even) {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  color: var(--light-gold);
+  color: var(--gold);
   font-size: 0.8rem;
   letter-spacing: 2px;
   opacity: 0.7;
@@ -460,9 +467,10 @@ section:nth-child(even) {
 /* === GURU === */
 .guru-content {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
   align-items: start;
+  text-align: left;
 }
 
 .guru-photo {
@@ -983,10 +991,9 @@ section:nth-child(even) {
 
 /* === ACADEMY === */
 .academy-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .academy-features {
@@ -1031,6 +1038,19 @@ section:nth-child(even) {
 .dvd-card p {
   font-size: 0.9rem;
   color: var(--text-light);
+}
+
+.academy-heading {
+  color: var(--maroon);
+  margin: 24px 0 16px;
+  font-size: 1.15rem;
+}
+
+.course-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 /* === CONTACT === */
@@ -1142,14 +1162,14 @@ section:nth-child(even) {
 .footer {
   background: var(--dark);
   color: rgba(255,255,255,0.7);
-  padding: 48px 0 24px;
+  padding: 24px 0 12px;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 40px;
+  gap: 24px;
+  margin-bottom: 16px;
 }
 
 .footer h4 {
@@ -1181,7 +1201,7 @@ section:nth-child(even) {
 
 .footer-bottom {
   text-align: center;
-  padding-top: 24px;
+  padding-top: 12px;
   border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 0.82rem;
 }
@@ -1231,14 +1251,25 @@ section:nth-child(even) {
 /* === PAGE HEADER (sub-pages) === */
 .page-header {
   position: relative;
-  height: 40vh;
-  min-height: 280px;
+  height: 70vh;
+  min-height: 400px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   overflow: hidden;
   padding: 0;
+  background: var(--cream);
+}
+
+.page-header .hero-photo {
+  flex: 0 0 40%;
+}
+
+.page-header .hero-photo::after {
+  width: 60px;
+}
+
+.page-header .hero-content {
+  padding: 40px 48px;
+  text-align: left;
 }
 
 .page-header .hero-content h1 {
@@ -1247,15 +1278,16 @@ section:nth-child(even) {
 }
 
 .page-header .hero-content .hero-sub {
-  margin-bottom: 0;
+  margin-bottom: 16px;
 }
 
 .page-header-emblem {
-  max-height: 140px;
+  max-height: 100px;
   width: auto;
-  margin: 0 auto 12px;
+  margin: 0 0 12px;
   display: block;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  align-self: flex-start;
+  filter: drop-shadow(0 2px 8px rgba(107, 15, 26, 0.2));
 }
 
 /* === EXPLORE CARDS === */
@@ -2312,14 +2344,17 @@ section:nth-child(even) {
   .about-grid,
   .guru-content,
   .project-hero,
-  .academy-content,
   .contact-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
   .guru-content { grid-template-columns: 200px 1fr; }
+  .course-options { grid-template-columns: 1fr; }
 
+  .hero { min-height: 500px; }
+  .hero-photo { flex: 0 0 45%; }
+  .hero-content { padding: 40px 32px; }
   .hero-content h1 { font-size: 2.5rem; }
   .section-title { font-size: 1.8rem; }
   .explore-cards { grid-template-columns: 1fr; }
@@ -2361,8 +2396,62 @@ section:nth-child(even) {
     font-size: 0.75rem;
   }
 
+  .hero {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+  .hero-photo {
+    flex: none;
+    width: 100%;
+    height: 50vh;
+    min-height: 300px;
+  }
+  .hero-photo::after {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--cream));
+  }
+  .hero-content {
+    padding: 32px 24px 48px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-content .hero-tagline { text-align: center; }
+  .hero-cta { justify-content: center; }
   .hero-content h1 { font-size: 2rem; }
   .hero-content .hero-sub { font-size: 1.1rem; }
+
+  .page-header {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+  .page-header .hero-photo {
+    flex: none;
+    width: 100%;
+    height: 30vh;
+    min-height: 200px;
+  }
+  .page-header .hero-photo::after {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--cream));
+  }
+  .page-header .hero-content {
+    text-align: center;
+    align-items: center;
+    padding: 24px 24px 32px;
+  }
+  .page-header-emblem { margin: 0 auto 12px; }
 
   .guru-content { grid-template-columns: 1fr; }
   .guru-photo { max-width: 250px; margin: 0 auto; }
@@ -2390,6 +2479,7 @@ section:nth-child(even) {
 }
 
 @media (max-width: 480px) {
+  .hero-photo { height: 40vh; min-height: 250px; }
   .hero-content h1 { font-size: 1.6rem; }
   .hero-content .sanskrit { font-size: 0.9rem; letter-spacing: 2px; }
   .btn { padding: 10px 24px; font-size: 0.88rem; }
