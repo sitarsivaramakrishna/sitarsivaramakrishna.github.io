@@ -49,6 +49,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="sitarist.html">Sitarist</a></li>
         <li><a href="composer.html">Composer</a></li>
+        <li><a href="moments.html">Moments</a></li>
         <li><a href="guru.html" class="active">Guru</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
@@ -206,11 +207,19 @@
       <p class="section-subtitle fade-in">Words from students and fellow musicians</p>
       <div class="divider"></div>
 
-      <div class="projects-placeholder fade-in" style="text-align: center; padding: 60px 20px; border: 2px dashed var(--border-gold); border-radius: 8px;">
-        <h3 style="color: var(--gold); margin-bottom: 16px;">Coming Soon</h3>
-        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">
-          Testimonials from students and fellow musicians will be available here soon.
-        </p>
+      <div class="testimonials-grid fade-in">
+        <div class="testimonial-card">
+          <img src="assets/images/testimonials/review-1.webp" alt="Student testimonial" loading="lazy">
+        </div>
+        <div class="testimonial-card">
+          <img src="assets/images/testimonials/review-2.webp" alt="Student testimonial" loading="lazy">
+        </div>
+        <div class="testimonial-card">
+          <img src="assets/images/testimonials/review-3.webp" alt="Student testimonial" loading="lazy">
+        </div>
+        <div class="testimonial-card">
+          <img src="assets/images/testimonials/review-4.webp" alt="Student testimonial" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -227,6 +236,7 @@
 
       <!-- Teacher View -->
       <div id="teacher-view" style="display: none;">
+        <div id="portal-today-summary"></div>
         <div class="portal-tabs">
           <button class="portal-tab active" data-tab="calendar">Calendar</button>
           <button class="portal-tab" data-tab="students">Students</button>
@@ -249,6 +259,7 @@
                 <div id="cal-day-classes"></div>
                 <button class="btn btn-primary" id="schedule-class-btn" style="margin-top: 16px;">+ Schedule Class</button>
               </div>
+              <div id="cal-agenda" style="display: none;"></div>
             </div>
           </div>
           <div id="tab-students" class="tab-pane" style="display: none;">
@@ -416,6 +427,14 @@
     </div>
   </div>
 
+  <!-- Student Detail Modal -->
+  <div class="portal-modal-overlay" id="student-detail-modal" style="display: none;">
+    <div class="portal-modal portal-modal-wide">
+      <button class="portal-modal-close" id="student-detail-close">&times;</button>
+      <div id="student-detail-body"></div>
+    </div>
+  </div>
+
   <!-- Login Modal -->
   <div class="portal-modal-overlay" id="login-modal" style="display: none;">
     <div class="portal-modal">
@@ -447,6 +466,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="sitarist.html">Sitarist</a></li>
             <li><a href="composer.html">Composer</a></li>
+            <li><a href="moments.html">Moments</a></li>
             <li><a href="guru.html">Guru</a></li>
             <li><a href="index.html#contact">Contact</a></li>
           </ul>
@@ -478,6 +498,6 @@
   </div>
 
   <script src="js/main.js"></script>
-  <script type="module" src="js/portal.js"></script>
+  <script type="module" src="js/portal.min.js"></script>
 </body>
 </html>

@@ -331,7 +331,8 @@ All source materials are in Google Drive:
 - `index.html` — Homepage: Hero, Explore cards, Upcoming Concerts, About, Press, Contact, Footer
 - `sitarist.html` — Raga Dictionary, Solo Classical, Basavaraj Brothers, Ateetam
 - `composer.html` — About AME, Projects (5 projects with videos), Gallery (40+ photos with filters)
-- `guru.html` — Guru & Lineage, SRK Academy (DVDs + student videos), Testimonials (placeholder)
+- `guru.html` — Guru & Lineage, SRK Academy (DVDs + student videos), Testimonials (placeholder), Student Portal
+- `js/portal.js` — source portal JS; `js/portal.min.js` — minified (served to users). ES module with Firebase CDN imports
 - `css/style.css` — source styles; `css/style.min.css` — minified (served to users)
 - `js/main.js` — source JS; `js/main.min.js` — minified (served to users)
 - `assets/images/gallery/` — 52 photos in JPG + WebP formats
@@ -343,10 +344,12 @@ All source materials are in Google Drive:
 - `assets/images/concerts/` — Concert brochure images
 - `assets/images/aruna-logo.png` — Aruna Music Entertainment logo (transparent background)
 - `assets/images/srk-academy-logo.svg` — SRK Academy emblem (SVG with embedded photo via `<image>` tag)
-- `_config.yml` — Jekyll config excluding .md files from build (prevents Liquid parse errors)
+- `_config.yml` — Jekyll config excluding .md files and docs/ from build
 - `.nojekyll` — Marker file for GitHub Pages
-- `website-summary.md` — Comprehensive summary of the entire website
-- `wikipedia-draft.md` — Wikipedia article draft in wikitext format
+- `docs/website-summary.md` — Comprehensive summary of the entire website
+- `docs/wikipedia-draft.md` — Wikipedia article draft in wikitext format
+- `docs/academy-portal-plan.md` — Portal implementation plan with data model, security rules, UI wireframes
+- `docs/tasks.md` — Task list tracking all phases of website development
 - All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
 
 ## Navigation
@@ -354,7 +357,7 @@ All source materials are in Google Drive:
 - Sub-pages have a **secondary sub-navigation bar** (fixed below main nav) for section-level navigation
   - Sitarist: Raga Dictionary | Classical | Basavaraj Brothers | Ateetam
   - Composer: About | Projects | Gallery
-  - Guru: Guru & Lineage | The Academy | Testimonials
+  - Guru: Guru & Lineage | The Academy | Testimonials | Portal (visible only when logged in)
 - Sub-pages use `<body class="has-sub-nav">` for CSS offset
 - Sub-nav scroll highlighting via IntersectionObserver in main.js
 - CSS `scroll-margin-top: 110px` for proper anchor scrolling with two fixed navbars
@@ -366,8 +369,10 @@ All source materials are in Google Drive:
 ## Performance
 - WebP format for all images (31% smaller than JPG)
 - Gallery grid loads 400px thumbnails; lightbox loads full-size WebP via data-full attribute
-- CSS minified: 19K → 15K (21% saved)
-- JS minified: 5.3K → 4.3K (20% saved)
+- CSS minified: 42K → 33K (style.css → style.min.css)
+- JS minified: main.js 7K → 5.5K (main.min.js); portal.js 42K → portal.min.js
+- CSS minification: Python `csscompressor`; JS minification: Python `rjsmin`
+- GitHub Pages serves gzip-compressed responses (e.g., 5.5K JS → 1.7K on the wire)
 - Native lazy loading on all images and iframes
 - Hero background uses WebP; 7 images rotate randomly (~512KB total)
 
@@ -422,10 +427,11 @@ All source materials are in Google Drive:
 2. Guru & Lineage — tribute to Ustad Ahmed Hussain Khan, gharana lineage tree
 3. The Academy — teaching info, DVDs, 2 student performance videos
 4. Testimonials — placeholder (coming soon)
+5. Student Portal — scheduling portal (hidden until login, see Portal section below)
 
 ## Development Notes
 - YouTube embeds do NOT work from file:// protocol — must use http/https
-- Local dev: `cd ~/Work/Code/mine/sitarsivaramakrishna.github.io && python3 -m http.server 8080`
+- Local dev: `cd ~/Work/Code/mine/sitarsivaramakrishna.github.io && python3 -m http.server 8888`
 - Google Drive files are read-only when copied — use `chmod u+w` after copying
 - docx files from Google Drive can be read by unzipping and parsing word/document.xml
 - The old repo had Jekyll-based content that was fully replaced (force pushed)
@@ -452,6 +458,143 @@ All source materials are in Google Drive:
 - sitemap.xml lists site URL
 - Google Search Console: verified via HTML meta tag, sitemap submitted
 - Domain: sitarsiva.in (GoDaddy) → GitHub Pages (A records: 185.199.108-111.153, CNAME: www → sitarsivaramakrishna.github.io)
+
+## Student Portal (SRK Academy Portal)
+
+### Overview
+A scheduling portal embedded in `guru.html` (`sitarsiva.in/guru.html#portal`) for managing sitar classes. Two roles:
+- **Guruji (teacher)** — full calendar management, student CRUD, recurring/one-off scheduling, WhatsApp reminders
+- **Students** — read-only view of their own upcoming and past classes
+
+Bookmarkable URL: `guru.html#portal` — if not logged in, shows login modal automatically.
+
+### Backend — Firebase
+- **Firebase project**: `srk-academy-b2361`
+- **Auth**: Firebase Auth (email + password)
+- **Database**: Cloud Firestore
+- **API key**: `AIzaSyDDI6z3q7J37toDzZuL5kCR4IBAlKEy9XY`
+- **Cost**: Free tier (50K auth users, 1GB storage, 50K reads/day — we use <1% of limits)
+- Firebase SDK loaded via CDN `<script type="module">` imports from `https://www.gstatic.com/firebasejs/12.12.1/`
+
+### Firestore Data Model
+
+**`config/teacher`** — single document storing guruji's UID
+```
+{ uid: "<guruji's auth UID>" }
+```
+
+**`students/{id}`** — one document per student
+```
+{ name, email, whatsapp, level (beginner|intermediate|advanced),
+  classType (recurring|flexible), startDate, instrumentOwned,
+  notes, authUid (Firebase Auth UID), createdAt }
+```
+
+**`classes/{id}`** — one document per class instance
+```
+{ studentId, studentName, studentWhatsapp, date (YYYY-MM-DD string),
+  time (HH:mm), duration (minutes, default 60), mode (online|in-person),
+  status (scheduled|completed|cancelled), notes, fromRecurringSlot (slot ID or null),
+  whatsappSent, createdAt }
+```
+
+**`recurringSlots/{id}`** — weekly recurring slot templates
+```
+{ studentId, studentName, studentWhatsapp, dayOfWeek (0-6),
+  time (HH:mm), duration, mode, active (boolean), createdAt }
+```
+
+Date storage: Uses "YYYY-MM-DD" strings (not Timestamps) to avoid timezone issues.
+
+### Firestore Security Rules
+- Teacher role stored in `config/teacher` doc (set once via Firebase Console)
+- Teacher: full read/write on all collections
+- Students: read-only on their own profile and their own classes
+- No one can self-assign teacher role
+- Rules should be set in Firebase Console → Firestore → Rules
+
+### How Recurring Classes Work
+- Guruji creates a `recurringSlot` (e.g., "Ravi, every Tuesday 10am, online")
+- Client-side `generateClassesFromSlot()` auto-generates `classes` documents 4 weeks ahead
+- Each generated class has `fromRecurringSlot` pointing back to the slot
+- `ensureRecurringClassesGenerated()` runs when recurring slots are loaded (self-healing)
+- Guruji can cancel/reschedule individual classes without breaking the pattern
+- When a recurring slot is deactivated, no new classes are generated
+
+### Portal JS Architecture (`js/portal.js`)
+ES module (~1100 lines) with Firebase CDN imports. No build tools, no bundler.
+
+**Auth flow:**
+- `initAuth()` — `onAuthStateChanged` listener; determines role on login
+- `determineRole()` — checks `config/teacher` doc first, then queries `students` collection for matching `authUid`
+- Secondary Firebase app instance (`initializeApp(config, 'accountCreator')`) for creating student accounts without logging out the teacher
+
+**Real-time listeners:**
+- `startStudentsListener()` — `onSnapshot` on `students` collection (ordered by name)
+- `startClassesListener()` — `onSnapshot` on `classes` collection (ordered by date)
+- `startRecurringListener()` — `onSnapshot` on `recurringSlots` collection (ordered by dayOfWeek)
+- `startStudentClassesListener()` — student role only, queries classes where `studentId` matches
+
+**Teacher view — 3 tabs:**
+1. Calendar tab: month grid (`renderMonthGrid()`) + day detail panel (`renderDayDetail()`)
+2. Students tab: searchable table (`renderStudentList()`) + add/edit/delete modals
+3. Recurring Slots tab: table of active weekly slots (`renderRecurringList()`)
+
+**Key functions:**
+- `renderCalendar()` — orchestrator: calls `renderTodaySummary()`, switches between desktop calendar and mobile agenda
+- `renderMonthGrid()` — 7-column CSS grid with day status colors (green=all done, red=past unfinished, gold=pending)
+- `renderDayDetail()` — list of classes for selected day with actions (complete, edit, cancel, WhatsApp)
+- `renderTodaySummary()` — today's summary card showing class count, done/pending stats, next class
+- `renderAgenda()` — mobile-only scrollable list of next 2 weeks' classes
+- `renderStudentList()` — searchable table with student search, count
+- `renderStudentView()` — student role's read-only view of upcoming + past classes
+- `handleClassFormSubmit()` — creates/edits classes with conflict detection (same time same day)
+- `handleRecurringFormSubmit()` — creates recurring slot + generates 4 weeks of classes
+- `makeWaLink()` — generates wa.me/ URL with pre-filled reminder message
+- `sendBulkReminders()` — opens wa.me links sequentially (800ms apart) for all pending classes on a day
+- `openStudentDetail()` — modal showing student profile + their class history
+- `allClassesForDate()` — returns all classes including cancelled (for day status coloring)
+- `classesForDate()` — returns non-cancelled classes only (for display)
+
+**UX features (6 improvements):**
+1. Today's summary card — maroon gradient card above tabs showing class count, done/pending, next class
+2. Calendar day status colors — green tint for all-done days, red tint for past days with unfinished classes
+3. Bulk WhatsApp reminders — "Remind All" button opens wa.me links sequentially for all pending classes
+4. Class time conflict detection — blocks scheduling when another class exists at the same time
+5. Student detail view — clickable student names open modal with full profile + class history
+6. Mobile agenda view — responsive switch at 768px: month grid replaced by scrollable 2-week agenda
+
+**Responsive behavior:**
+- `handleResize()` watches `window.innerWidth < 768` and toggles between calendar grid and agenda view
+- Mobile: hides month grid + day detail, shows agenda
+- Desktop: hides agenda, shows month grid + day detail side by side
+
+### Portal HTML Structure (in guru.html)
+- `#portal` section (hidden until login)
+- `#portal-today-summary` — today's summary card (above tabs)
+- `#teacher-view` with 3 tabs: `#tab-calendar`, `#tab-students`, `#tab-recurring`
+- `#student-view` — student role's read-only class list
+- `#no-role-view` — shown when logged in but no role assigned
+- `#cal-agenda` — mobile agenda container (hidden on desktop)
+- 5 modals: `#login-modal`, `#class-modal`, `#recurring-modal`, `#student-modal`, `#student-detail-modal`
+
+### Portal CSS (in css/style.css)
+Portal styles start at the `/* === PORTAL === */` comment. Key classes:
+- `.portal-login-btn`, `.portal-tabs`, `.portal-tab`, `.portal-form`, `.portal-modal-overlay`, `.portal-modal`
+- `.calendar-layout` (2-column grid), `.calendar-grid` (7-column), `.cal-cell`, `.cal-dot`
+- `.cal-day-done` (green), `.cal-day-missed` (red) — calendar day status colors
+- `.today-summary` — maroon gradient card
+- `.portal-remind-all` — bulk reminder button
+- `.cal-student-link` — clickable student name links
+- `.agenda-day`, `.agenda-today` — mobile agenda view
+- `.student-detail-header`, `.student-detail-meta`, `.student-detail-stats` — student detail modal
+
+### WhatsApp Integration
+- Uses `wa.me/` links (zero infrastructure, no API, no ban risk)
+- Pre-filled message: "Namaste! Your sitar class is scheduled for [day], [date] at [time] ([mode]). — SRK Academy of Music"
+- Guruji clicks 📱 icon → WhatsApp opens with message → Guruji hits send
+- `whatsappSent` field on class tracks if reminder was sent
+- Bulk reminders: opens multiple wa.me links sequentially with 800ms delay
 
 ## User Preferences (from Bharadwaj)
 - Asks questions one at a time

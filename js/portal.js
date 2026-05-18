@@ -58,7 +58,17 @@ function init() {
   initClassModal();
   initRecurringModal();
   initCalendar();
+  initStudentDetail();
   handleHash();
+  window.addEventListener('resize', handleResize);
+  handleResize();
+}
+
+let isMobileView = false;
+function handleResize() {
+  const wasMobile = isMobileView;
+  isMobileView = window.innerWidth < 768;
+  if (wasMobile !== isMobileView) renderCalendar();
 }
 
 // === AUTH ===
@@ -351,6 +361,15 @@ async function handleStudentFormSubmit(e) {
     showStudentError('Please fill in all required fields.'); return;
   }
 
+  const normalizedWa = data.whatsapp.replace(/[^0-9]/g, '');
+  const dupWa = studentsCache.find(s =>
+    s.id !== editingStudentId && s.whatsapp && s.whatsapp.replace(/[^0-9]/g, '') === normalizedWa
+  );
+  if (dupWa) {
+    showStudentError('A student with this WhatsApp number already exists: ' + dupWa.name);
+    return;
+  }
+
   btn.disabled = true;
 
   if (editingStudentId) {
@@ -424,8 +443,19 @@ function navigateMonth(delta) {
 }
 
 function renderCalendar() {
-  renderMonthGrid();
-  renderDayDetail();
+  renderTodaySummary();
+  if (isMobileView) {
+    hide($('.calendar-month'));
+    hide($('.calendar-day'));
+    show($('#cal-agenda'));
+    renderAgenda();
+  } else {
+    show($('.calendar-month'));
+    show($('.calendar-day'));
+    hide($('#cal-agenda'));
+    renderMonthGrid();
+    renderDayDetail();
+  }
 }
 
 function renderMonthGrid() {
@@ -449,11 +479,19 @@ function renderMonthGrid() {
 
   for (let d = 1; d <= numDays; d++) {
     const ds = fmtDate(new Date(year, month, d));
-    const count = classesForDate(ds).length;
+    const dayClasses = allClassesForDate(ds);
+    const active = dayClasses.filter(c => c.status !== 'cancelled');
+    const count = active.length;
     let cls = 'cal-cell';
     if (ds === today) cls += ' cal-today';
     if (ds === sel) cls += ' cal-selected';
-    if (count > 0) cls += ' cal-has-classes';
+    if (count > 0) {
+      cls += ' cal-has-classes';
+      const allDone = active.every(c => c.status === 'completed');
+      const isPast = ds < today;
+      if (allDone) cls += ' cal-day-done';
+      else if (isPast) cls += ' cal-day-missed';
+    }
     html += '<div class="' + cls + '" data-date="' + ds + '">' + d +
       (count > 0 ? '<span class="cal-dot">' + count + '</span>' : '') + '</div>';
   }
@@ -491,7 +529,13 @@ function renderDayDetail() {
     return;
   }
 
+  const pending = classes.filter(c => c.status === 'scheduled' && c.studentWhatsapp);
   let html = '';
+
+  if (pending.length > 1) {
+    html += '<button class="btn btn-primary portal-remind-all" data-date="' + ds + '">📱 Remind All (' + pending.length + ')</button>';
+  }
+
   for (const c of classes) {
     const mode = c.mode === 'online' ? 'Online' : 'In-person';
     const done = c.status === 'completed';
@@ -502,7 +546,7 @@ function renderDayDetail() {
     html += '<div class="cal-class-item' + statusCls + '">' +
       '<div class="cal-class-time">' + fmtTime(c.time) + '</div>' +
       '<div class="cal-class-info">' +
-        '<strong>' + esc(c.studentName) + '</strong> ' +
+        '<a href="#" class="cal-student-link" data-student="' + c.studentId + '">' + esc(c.studentName) + '</a> ' +
         '<span class="cal-class-mode">' + mode + '</span>' +
         (c.notes ? '<div class="cal-class-notes">' + esc(c.notes) + '</div>' : '') +
         (cancelled ? '<span class="cal-class-status">Cancelled</span>' : '') +
@@ -523,10 +567,172 @@ function renderDayDetail() {
   container.querySelectorAll('[data-action="complete"]').forEach(b => b.addEventListener('click', () => markComplete(b.dataset.id)));
   container.querySelectorAll('[data-action="cancel-class"]').forEach(b => b.addEventListener('click', () => cancelClass(b.dataset.id)));
   container.querySelectorAll('[data-action="edit-class"]').forEach(b => b.addEventListener('click', () => openEditClassModal(b.dataset.id)));
+  container.querySelectorAll('.cal-student-link').forEach(a => {
+    a.addEventListener('click', (e) => { e.preventDefault(); openStudentDetail(a.dataset.student); });
+  });
+  container.querySelector('.portal-remind-all')?.addEventListener('click', (e) => sendBulkReminders(e.target.dataset.date));
 }
 
 function classesForDate(ds) {
   return classesCache.filter(c => c.date === ds && c.status !== 'cancelled');
+}
+
+function allClassesForDate(ds) {
+  return classesCache.filter(c => c.date === ds);
+}
+
+function renderTodaySummary() {
+  const container = $('#portal-today-summary');
+  if (!container) return;
+
+  const today = fmtDate(new Date());
+  const classes = classesForDate(today).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+  const completed = classes.filter(c => c.status === 'completed').length;
+  const scheduled = classes.filter(c => c.status === 'scheduled').length;
+
+  if (classes.length === 0) {
+    container.innerHTML = '<div class="today-summary"><div class="today-summary-title">Today</div><div class="today-summary-body">No classes today.</div></div>';
+    return;
+  }
+
+  const next = classes.find(c => c.status === 'scheduled');
+  let html = '<div class="today-summary"><div class="today-summary-title">Today &mdash; ' + classes.length + ' class' + (classes.length !== 1 ? 'es' : '') + '</div>';
+  html += '<div class="today-summary-body">';
+  html += '<span class="today-stat today-stat-done">' + completed + ' done</span>';
+  html += '<span class="today-stat today-stat-pending">' + scheduled + ' pending</span>';
+  if (next) {
+    html += '<span class="today-stat today-stat-next">Next: ' + fmtTime(next.time) + ' &mdash; ' + esc(next.studentName) + '</span>';
+  }
+  html += '</div></div>';
+  container.innerHTML = html;
+}
+
+function renderAgenda() {
+  const container = $('#cal-agenda');
+  if (!container) return;
+
+  const today = new Date();
+  const todayStr = fmtDate(today);
+  let html = '<div class="agenda-header"><h3>Upcoming Classes</h3></div>';
+
+  let found = 0;
+  const d = new Date(today);
+  for (let i = 0; i < 14 && found < 20; i++) {
+    const ds = fmtDate(d);
+    const classes = classesForDate(ds).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+    if (classes.length > 0) {
+      const isToday = ds === todayStr;
+      html += '<div class="agenda-day' + (isToday ? ' agenda-today' : '') + '">';
+      html += '<div class="agenda-day-label">' + (isToday ? 'Today' : DAYS[d.getDay()].slice(0, 3)) + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + '</div>';
+      for (const c of classes) {
+        const done = c.status === 'completed';
+        const waLink = makeWaLink(c);
+        html += '<div class="cal-class-item' + (done ? ' cal-class-done' : '') + '">' +
+          '<div class="cal-class-time">' + fmtTime(c.time) + '</div>' +
+          '<div class="cal-class-info">' +
+            '<a href="#" class="cal-student-link" data-student="' + c.studentId + '">' + esc(c.studentName) + '</a> ' +
+            '<span class="cal-class-mode">' + (c.mode === 'online' ? 'Online' : 'In-person') + '</span>' +
+          '</div>' +
+          '<div class="cal-class-actions">' +
+            '<a href="' + waLink + '" target="_blank" rel="noopener" class="portal-btn-sm" title="WhatsApp">📱</a>' +
+            (!done ? '<button class="portal-btn-sm portal-btn-edit" data-action="complete" data-id="' + c.id + '" title="Done">✓</button>' : '') +
+          '</div></div>';
+        found++;
+      }
+      html += '</div>';
+    }
+    d.setDate(d.getDate() + 1);
+  }
+
+  if (found === 0) {
+    html += '<p class="cal-empty-day">No upcoming classes in the next 2 weeks.</p>';
+  }
+
+  container.innerHTML = html;
+  container.querySelectorAll('[data-action="complete"]').forEach(b => b.addEventListener('click', () => markComplete(b.dataset.id)));
+  container.querySelectorAll('.cal-student-link').forEach(a => {
+    a.addEventListener('click', (e) => { e.preventDefault(); openStudentDetail(a.dataset.student); });
+  });
+}
+
+function sendBulkReminders(dateStr) {
+  const classes = classesForDate(dateStr).filter(c => c.status === 'scheduled' && c.studentWhatsapp);
+  if (classes.length === 0) return;
+
+  const links = classes.map(c => makeWaLink(c));
+  let i = 0;
+  function openNext() {
+    if (i >= links.length) return;
+    window.open(links[i], '_blank', 'noopener');
+    i++;
+    if (i < links.length) setTimeout(openNext, 800);
+  }
+  openNext();
+}
+
+function openStudentDetail(studentId) {
+  const student = studentsCache.find(s => s.id === studentId);
+  if (!student) return;
+
+  const modal = $('#student-detail-modal');
+  if (!modal) return;
+
+  const studentClasses = classesCache
+    .filter(c => c.studentId === studentId && c.status !== 'cancelled')
+    .sort((a, b) => b.date.localeCompare(a.date) || b.time.localeCompare(a.time));
+
+  const today = fmtDate(new Date());
+  const upcoming = studentClasses.filter(c => c.date >= today);
+  const past = studentClasses.filter(c => c.date < today);
+  const totalCompleted = studentClasses.filter(c => c.status === 'completed').length;
+
+  let html = '<div class="student-detail-header">' +
+    '<h3>' + esc(student.name) + '</h3>' +
+    '<div class="student-detail-meta">' +
+      '<span>' + capitalize(student.level) + '</span>' +
+      '<span>' + (student.classType === 'recurring' ? 'Recurring' : 'Flexible') + '</span>' +
+      (student.whatsapp ? '<span>📱 ' + esc(student.whatsapp) + '</span>' : '') +
+    '</div>' +
+    (student.notes ? '<p class="student-detail-notes">' + esc(student.notes) + '</p>' : '') +
+    '<div class="student-detail-stats">' +
+      '<span>' + totalCompleted + ' completed</span>' +
+      '<span>' + upcoming.length + ' upcoming</span>' +
+    '</div>' +
+  '</div>';
+
+  if (upcoming.length > 0) {
+    html += '<h4 class="portal-list-heading">Upcoming</h4>';
+    for (const c of upcoming.reverse()) {
+      const d = new Date(c.date + 'T00:00:00');
+      html += '<div class="student-class-item"><span class="student-class-date">' +
+        DAYS[d.getDay()].slice(0, 3) + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] +
+        '</span><span class="student-class-time">' + fmtTime(c.time) + '</span>' +
+        '<span class="cal-class-mode">' + (c.mode === 'online' ? 'Online' : 'In-person') + '</span></div>';
+    }
+  }
+
+  if (past.length > 0) {
+    html += '<h4 class="portal-list-heading" style="margin-top:20px;">Recent Classes</h4>';
+    for (const c of past.slice(0, 10)) {
+      const d = new Date(c.date + 'T00:00:00');
+      html += '<div class="student-class-item student-class-past"><span class="student-class-date">' +
+        DAYS[d.getDay()].slice(0, 3) + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] +
+        '</span><span class="student-class-time">' + fmtTime(c.time) + '</span>' +
+        '<span class="cal-class-mode">' + (c.mode === 'online' ? 'Online' : 'In-person') + '</span>' +
+        (c.status === 'completed' ? '<span class="student-class-done">✓</span>' : '') + '</div>';
+    }
+  }
+
+  $('#student-detail-body').innerHTML = html;
+  modal.style.display = 'flex';
+}
+
+function initStudentDetail() {
+  const modal = $('#student-detail-modal');
+  if (!modal) return;
+  const closeBtn = $('#student-detail-close');
+  if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 }
 
 // === CLASSES ===
@@ -593,6 +799,14 @@ async function handleClassFormSubmit(e) {
   };
 
   if (!data.date || !data.time || !data.mode) { showClassError('Please fill in all fields.'); return; }
+
+  const conflicting = classesForDate(data.date).find(c =>
+    c.id !== editingClassId && c.time === data.time
+  );
+  if (conflicting) {
+    showClassError('Conflict: ' + conflicting.studentName + ' already has a class at ' + fmtTime(data.time) + '.');
+    return;
+  }
 
   btn.disabled = true;
 

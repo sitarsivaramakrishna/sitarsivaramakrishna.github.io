@@ -11,16 +11,25 @@ Disciple of Ustad Ahmed Hussain Khan of the Mian Achpal and Senia Gharana. Found
 
 ## Pages
 
-- **Home** — Hero, upcoming concerts, biography, press reviews, contact form
-- **Sitarist** — Raga Dictionary, solo classical performances, Basavaraj Brothers, Ateetam
-- **Composer** — Aruna Music Entertainment: about, 5 production projects, photo gallery
-- **Guru** — Guru lineage, SRK Academy of Music, testimonials
+- **Home** (`index.html`) — Hero, upcoming concerts, biography, press reviews, contact form
+- **Sitarist** (`sitarist.html`) — Raga Dictionary, solo classical performances, Basavaraj Brothers, Ateetam
+- **Composer** (`composer.html`) — Aruna Music Entertainment: about, 5 production projects, photo gallery
+- **Guru** (`guru.html`) — Guru lineage, SRK Academy of Music, testimonials, student portal
+
+## Student Portal
+
+Scheduling portal on the Guru page (`guru.html#portal`) for managing sitar classes.
+
+- **Guruji (teacher)** — calendar, student management, recurring/one-off scheduling, WhatsApp reminders via wa.me/ links
+- **Students** — read-only view of their own upcoming and past classes
+- **Backend** — Firebase Auth + Firestore (free tier)
 
 ## Tech Stack
 
 Plain HTML + CSS + vanilla JavaScript. No frameworks or build tools.
 
-- WebP images with lazy loading
+- Firebase Auth + Firestore for the student portal
+- WebP images with lazy loading and thumbnails
 - CSS/JS minified via Python (`csscompressor`, `rjsmin`)
 - Google Analytics (GA4), SEO with JSON-LD structured data
 - Contact form via Google Forms
@@ -28,10 +37,10 @@ Plain HTML + CSS + vanilla JavaScript. No frameworks or build tools.
 ## Local Development
 
 ```bash
-python3 -m http.server 8080
+python3 -m http.server 8888
 ```
 
-Then open http://localhost:8080
+Then open http://localhost:8888
 
 ## Built by
 
