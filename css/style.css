@@ -110,14 +110,11 @@ section:nth-child(even) {
 
 .nav-logo {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--light-gold) !important;
+  font-size: 1.15rem;
+  color: var(--gold) !important;
   font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.nav-logo span {
-  color: var(--gold);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .nav-links {

@@ -4,16 +4,13 @@
     'assets/images/heroes/hero-pink-smoke.webp',
     'assets/images/heroes/hero-tan-seated.webp',
     'assets/images/heroes/hero-red-moody.webp',
-    'assets/images/heroes/hero-red-closeup.webp',
     'assets/images/heroes/hero-white-playing.webp',
-    'assets/images/heroes/hero-forest.webp',
-    'assets/images/heroes/hero-temple.webp'
+    'assets/images/heroes/hero-forest.webp'
   ];
   var pageHeroes = [
     'assets/images/heroes/hero-pink-smoke.webp',
     'assets/images/heroes/hero-tan-seated.webp',
     'assets/images/heroes/hero-red-moody.webp',
-    'assets/images/heroes/hero-red-closeup.webp',
     'assets/images/heroes/hero-white-playing.webp',
     'assets/images/heroes/hero-forest.webp'
   ];
