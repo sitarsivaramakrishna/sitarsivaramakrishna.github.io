@@ -205,3 +205,40 @@ function submitContactForm(form) {
   }, 500);
   return true;
 }
+
+/* === FAQ Accordion === */
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-answer');
+    var isOpen = item.classList.contains('open');
+
+    document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+      if (openItem !== item) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-answer').style.maxHeight = null;
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    if (isOpen) {
+      item.classList.remove('open');
+      answer.style.maxHeight = null;
+      this.setAttribute('aria-expanded', 'false');
+    } else {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      this.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+document.querySelectorAll('.faq-section-nav a').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
