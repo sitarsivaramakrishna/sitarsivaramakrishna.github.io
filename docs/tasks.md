@@ -45,6 +45,8 @@
 ### 1.06 Wikipedia & Documentation
 - [x] Website summary (website-summary.md)
 - [x] Wikipedia article draft in wikitext format (wikipedia-draft.md)
+- [x] Per-page documentation (page-index.md, page-sitarist.md, page-composer.md, page-guru.md, page-moments.md)
+- [x] Design aesthetic guide (design-aesthetic.md)
 - [x] _config.yml to exclude .md files from Jekyll build
 - [x] .nojekyll marker file
 
@@ -54,7 +56,7 @@
 - [x] Navigation bar: Home | Sitarist | Composer | Guru | Moments | Contact
 - [x] CTA button (Listen)
 - [x] Scroll indicator
-- [x] Explore section with 3 cards (Sitarist photo, Aruna logo, SRK Academy logo)
+- [x] Explore section with 3 cards (Sitarist: Shalle Bangalore concert photo, Aruna logo, SRK Academy logo)
 - [x] Removed Upcoming Concerts section (May 2026)
 - [x] Compressed footer (reduced height)
 
@@ -97,7 +99,7 @@
 
 ### 1.6 Basavaraj Brothers Section
 - [x] About the duo (Sitar + Violin)
-- [x] Photos of the brothers performing (Hyderabad Palace)
+- [x] Photos of the brothers performing (Drive East Festival NY — replaced Hyderabad Palace)
 - [x] Description of Jugalbandi style (Carnatic + Hindustani fusion)
 - [x] Link to basavarajbrothers.com
 - [x] 6 embedded videos of their performances
@@ -119,10 +121,11 @@
 - [x] Learn to Play Sitar — new section with 2 DVD videos (horizontal layout, centered)
 - [x] SRK Academy logo — Elegant Vertical SVG (maroon sitar on cream, gold borders and text)
 - [x] Student testimonials — 4 review images
+- [x] FAQ section — 41-item accordion integrated into guru.html (Beginners + Intermediate groups)
 - [ ] Sitar & accessories info
 
 ### 1.85 Composer Projects (composer.html)
-- [x] About AME section — About, Vision, Practice (above Projects)
+- [x] About AME section — About (Smt Aruna Sivaramakrishna Rao, wife of Sri Sivaramakrishna Rao), Vision, Practice (above Projects)
 - [x] Sub-nav updated: About | Projects | Gallery
 - [x] Jay Rang Rang — Kashi La Lumière project feature card (release date added: 11 Mar 2021)
 - [x] Heroes' Might — Veershakti project (release date added: 13 Sep 2021, Une Production Florent credit)

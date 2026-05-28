@@ -350,6 +350,12 @@ All source materials are in Google Drive:
 - `docs/wikipedia-draft.md` — Wikipedia article draft in wikitext format
 - `docs/academy-portal-plan.md` — Portal implementation plan with data model, security rules, UI wireframes
 - `docs/tasks.md` — Task list tracking all phases of website development
+- `docs/design-aesthetic.md` — Design language: colors, typography, visual motifs, layout patterns, responsive breakpoints
+- `docs/page-index.md` — Homepage sections, assets, and notes
+- `docs/page-sitarist.md` — Sitarist page sections, video embeds, streaming links
+- `docs/page-composer.md` — Composer page sections, AME projects, gallery
+- `docs/page-guru.md` — Guru page sections, FAQ accordion, student portal
+- `docs/page-moments.md` — Moments page gallery sections, photo assets
 - All images have WebP versions alongside originals; gallery uses data-full attribute for lightbox full-size loading
 
 ## Navigation

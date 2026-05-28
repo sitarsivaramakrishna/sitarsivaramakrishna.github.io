@@ -22,7 +22,7 @@ This page showcases the artist's performing career across multiple dimensions:
 - **Ateetam** — A meditative music project meaning "The Beyond" in Sanskrit. Albums include *Spirit of India*, *Song of the Soul*, and *Tracing Beyond*.
 
 ### Composer (sitarsiva.in/composer.html)
-Showcases the artist's work as founder of **Aruna Music Entertainment (AME)**, a distinguished South Indian production house founded by Aruna Sivaramakrishna Rao:
+Showcases the artist's work through **Aruna Music Entertainment (AME)**, a distinguished South Indian production house founded by Smt Aruna Sivaramakrishna Rao, wife of Sri Sivaramakrishna Rao:
 
 - **About** — Introduction to AME with its vision ("tradition and innovation converge") and practice areas.
 - **Projects** — Five productions ordered newest-first:
@@ -38,16 +38,18 @@ Dedicated to the sacred Guru-Shishya Parampara (teacher-student tradition):
 
 - **Guru & Lineage** — Opens with *"Sri Gurubhyo Namaha"*. A tribute to Ustad Ahmed Hussain Khan and the Mian Achpal and Senia Gharana. The lineage tree traces from the legendary Beenkar Bande Ali Khan, through Ustad Rahimat Khan (1863-1954), to Ustad Ahmed Hussain Khan, and to B. Sivaramakrishna Rao as the present torchbearer.
 - **The Academy** — Personalized one-on-one sitar instruction (online and in-person in Bangalore/Chennai). Course options for Beginner (12 classes/quarter) and Advanced/Professional (13/11/9 classes/quarter). Full Terms & Conditions listed.
+- **FAQ** — 41-item accordion organized into two groups (For Beginners and For Intermediate Students) covering topics from choosing a sitar to raga practice and performance preparation.
 - **Student Performances** — 2 student performance videos displayed horizontally.
 - **Learn to Play Sitar** — 2 instructional DVD videos (*Learn To Play Sitar* Vol. 1 & 2) displayed horizontally.
 - **Testimonials** — 4 student review images.
+- **Student Portal** — Firebase-based scheduling portal for managing sitar classes (hidden until login). Teacher and student roles with calendar, recurring slots, and WhatsApp reminders.
 
 ### Moments (sitarsiva.in/moments.html)
 Photo gallery organized by category with lightbox viewer:
 
 - **With Artists** — Photos with celebrated musicians (Hariharan, Ustad Shahid Parvez, Ustad Rashid Khan, Bombay Jayashree, Dr. Balamuralikrishna, Devi Sri Prasad, and others).
 - **With Students** — 4 photos with students (centered layout).
-- **Concert Pictures** — Concert photos including 7 former hero background images.
+- **Concert Pictures** — Concert and international performance photos including former hero background images, Drive East Festival NY, Europe Tour 2024, and more.
 - **International** — Photos from international performances and tours.
 - **Awards** — 2 award photos (Madhura Murali Puraskar, Nada Chintamani Award), centered.
 
