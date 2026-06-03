@@ -1566,6 +1566,20 @@ section:nth-child(even) {
   display: block;
 }
 
+.testimonial-video-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.testimonial-video-name {
+  text-align: center;
+  padding: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--maroon);
+}
+
 /* === ANIMATIONS === */
 .fade-in {
   opacity: 0;
