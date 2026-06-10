@@ -1626,7 +1626,7 @@ section:nth-child(even) {
 }
 
 .page-header-emblem {
-  max-height: 100px;
+  max-height: 200px;
   width: auto;
   margin: 0 0 12px;
   display: block;
@@ -1726,7 +1726,7 @@ section:nth-child(even) {
 }
 
 .explore-card-emblem-center img {
-  max-height: 160px;
+  max-height: 320px;
   width: auto;
   max-width: 80%;
   transition: transform 0.4s;
