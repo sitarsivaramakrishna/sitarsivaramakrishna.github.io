@@ -343,7 +343,8 @@ All source materials are in Google Drive:
 - `assets/images/concerts/` — Concert brochure images
 - `assets/images/aruna-logo.png` — Aruna Music Entertainment logo (transparent background)
 - `assets/images/srk-academy-logo.svg` — SRK Academy emblem (old, SVG with embedded photo via `<image>` tag)
-- `assets/images/srk-academy-logo-new.svg` — SRK Academy logo (current, Elegant Vertical design with maroon sitar on cream, gold borders and text)
+- `assets/images/srk-academy-logo-new.svg` — SRK Academy logo (superseded, Elegant Vertical design with maroon sitar on cream)
+- `assets/images/srk-academy-logo-2026.svg` — SRK Academy logo (current, professional brand kit: transparent bg, maroon #47121d strokes, sitar + peacock + "SRK MUSIC ACADEMY" wordmark)
 - `_config.yml` — Jekyll config excluding .md files and docs/ from build
 - `.nojekyll` — Marker file for GitHub Pages
 - `docs/website-summary.md` — Comprehensive summary of the entire website
