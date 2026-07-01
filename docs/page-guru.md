@@ -9,7 +9,7 @@
 
 | # | ID | Section | Description |
 |---|-----|---------|-------------|
-| 1 | — | Page Header | Split-layout hero (70vh) with SRK Academy logo (srk-academy-logo-new.svg). "Student Portal" login button in hero. |
+| 1 | — | Page Header | Split-layout hero (70vh) with SRK Academy logo (srk-academy-logo-2026.svg). "Student Portal" login button in hero. |
 | 2 | `#guru` | Guru & Lineage | "Sri Gurubhyo Namaha" subtitle. Tribute to Ustad Ahmed Hussain Khan. Gharana lineage tree: Bande Ali Khan → Rahimat Khan → Ahmed Hussain Khan → Sivaramakrishna Rao. 3 guru photos. |
 | 3 | `#academy` | The Academy | Personalized instruction description. Course Options (Beginner: 12 classes/quarter, Advanced/Professional: 13/11/9). Terms & Conditions (8 items). |
 | 4 | `#faq` | FAQ | 41-item accordion organized in 2 groups: For Beginners (via `#beginners`) and For Intermediate Students (via `#intermediate`). Section nav buttons to jump between groups. Contact card at bottom. |
@@ -20,7 +20,7 @@
 
 ## Key Assets
 - Hero images: `assets/images/heroes/` (5 photos in rotation)
-- SRK Academy logo: `assets/images/srk-academy-logo-new.svg`
+- SRK Academy logo: `assets/images/srk-academy-logo-2026.svg`
 - Guru photos: `assets/images/guru/` (3 photos)
 - Portal JS: `js/portal.js` (source), `js/portal.min.js` (minified)
 - 4 YouTube iframe embeds (students + DVDs)
