@@ -1744,16 +1744,19 @@ section:nth-child(even) {
 
 .explore-card-emblem-center {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px 24px 8px;
 }
 
 .explore-card-emblem-center img {
-  max-height: 320px;
-  width: auto;
+  max-height: 100%;
   max-width: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   transition: transform 0.4s;
 }
 
@@ -1763,12 +1766,12 @@ section:nth-child(even) {
 
 .explore-card-emblem-subtitle {
   width: 100%;
-  text-align: center;
-  padding: 0 16px 20px;
+  text-align: left;
+  padding: 0 24px 20px;
   font-size: 0.9rem;
   color: var(--maroon);
   font-style: italic;
-  opacity: 0.75;
+  font-weight: 700;
   letter-spacing: 0.3px;
 }
 
