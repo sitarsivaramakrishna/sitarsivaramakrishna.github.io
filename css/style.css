@@ -1789,18 +1789,30 @@ section:nth-child(even) {
   color: var(--gold);
 }
 
-.explore-card--accent-maroon .explore-card-emblem-subtitle::before {
-  color: var(--maroon);
-}
-
 .explore-card--accent-gold:hover {
   border-color: var(--gold);
   box-shadow: 0 12px 32px rgba(201, 168, 76, 0.25);
 }
 
-.explore-card--accent-maroon:hover {
-  border-color: var(--maroon);
-  box-shadow: 0 12px 32px rgba(107, 15, 26, 0.25);
+/* Dark maroon card variant (SRK Academy) */
+.explore-card--dark {
+  background: var(--maroon);
+  border-color: var(--gold);
+}
+
+.explore-card--dark:hover {
+  background: #7d1524;
+  border-color: var(--light-gold);
+  box-shadow: 0 12px 32px rgba(107, 15, 26, 0.45);
+}
+
+.explore-card--dark .explore-card-emblem-subtitle {
+  color: var(--light-gold);
+}
+
+.explore-card--dark .explore-card-emblem-subtitle::before {
+  color: var(--gold);
+  opacity: 0.9;
 }
 
 /* === AME ABOUT (Composer page) === */
