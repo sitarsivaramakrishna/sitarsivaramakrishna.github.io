@@ -1775,6 +1775,34 @@ section:nth-child(even) {
   letter-spacing: 0.3px;
 }
 
+.explore-card-emblem-subtitle::before {
+  content: "\2500\2500  \2726  \2500\2500";
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+
+.explore-card--accent-gold .explore-card-emblem-subtitle::before {
+  color: var(--gold);
+}
+
+.explore-card--accent-maroon .explore-card-emblem-subtitle::before {
+  color: var(--maroon);
+}
+
+.explore-card--accent-gold:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 32px rgba(201, 168, 76, 0.25);
+}
+
+.explore-card--accent-maroon:hover {
+  border-color: var(--maroon);
+  box-shadow: 0 12px 32px rgba(107, 15, 26, 0.25);
+}
+
 /* === AME ABOUT (Composer page) === */
 .ame-about {
   max-width: 800px;
